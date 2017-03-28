@@ -9,11 +9,8 @@ const applicationController = require('./controller/api/applicationController');
 const notificationController = require('./controller/api/notificationController');
 const activityBillController = require('./controller/api/activityBillController');
 
-let app = express();
 
-// view engine setup
-app.set('views', path.join(__dirname, 'view'));
-app.set('view engine', 'pug');
+let app = express();
 
 app.all('*', (req, res, next) => {
 	res.header("Access-Control-Allow-Origin", "*");
