@@ -1,0 +1,15 @@
+extends layout
+
+block content
+	table
+		tr
+			th username
+			th password
+			th last_login_time
+			th create_time
+		each item in users
+			tr
+				td= item['username']
+				td= item['password']
+				td= item['last_login_time']
+				td= item['create_time']
