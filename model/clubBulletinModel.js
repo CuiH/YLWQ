@@ -32,6 +32,19 @@ const clubBulletinModel = {
 	},
 
 	/* params = {club_id} */
+	findLatestOneByClubId: (params, callback) => {
+		query(clubBulletinSql.selectLatestOneByClubId, [params.club_id],
+			(err, results, fields) => {
+				if (err) {
+					return callback(err, null);
+				}
+
+				callback(null, results);
+			}
+		);
+	},
+
+	/* params = {club_id} */
 	findAllByClubId: (params, callback) => {
 		query(clubBulletinSql.selectAllByClubId, [params.club_id],
 			(err, results, fields) => {

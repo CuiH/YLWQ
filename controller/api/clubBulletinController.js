@@ -31,6 +31,24 @@ clubBulletinRoute.post('/create',
 	}
 );
 
+clubBulletinRoute.get('/get_latest_one',
+	tokenAuthentication,
+	clubAuthentication.memberAccess,
+	(req, res, next) => {
+		clubBulletinService.getLatestClubBulletinByClubId({club_id: req.query.club_id},
+			(err, results) => {
+				if (err) {
+					// TODO handle error
+					return next(err);
+				}
+
+				res.json({result: 'success', data: results});
+				console.log("a user got a latest club_bulletin, id: " + req.user.id);
+			}
+		);
+	}
+);
+
 clubBulletinRoute.get('/:club_bulletin_id',
 	tokenAuthentication,
 	clubBulletinAuthentication.readAccess,
@@ -48,6 +66,5 @@ clubBulletinRoute.get('/:club_bulletin_id',
 		);
 	}
 );
-
 
 module.exports = clubBulletinRoute;

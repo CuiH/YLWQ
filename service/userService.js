@@ -121,8 +121,8 @@ const userService = {
 	},
 
 	/* params = {username, password} */
-	/* callback: (err, results = {userId, token}) */
-	signIn: (params, callback) => {
+	/* callback: (err, results = {id, username, token}) */
+	logIn: (params, callback) => {
 		// TODO verify params
 
 
@@ -138,7 +138,7 @@ const userService = {
 			// generate token
 			const token = jwt.sign({id: result.id, username: params.username}, tokenValues.TOKEN_SECRET,
 				{expiresIn: tokenValues.TOKEN_EXPIRATION});
-			callback(null, {userId: result.id, token: token});
+			callback(null, {id: result.id, username: params.username, token: token});
 		}).catch((err) => {
 			callback(err, null);
 		})

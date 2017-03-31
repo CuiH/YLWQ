@@ -28,28 +28,28 @@ userRoute.post('/register',
 	}
 );
 
-userRoute.post('/sign_in',
+userRoute.post('/log_in',
 	bodyParser.urlencoded({extended: false}),
 	(req, res, next) => {
-		userService.signIn(req.body,
+		userService.logIn(req.body,
 			(err, results) => {
 				if (err) {
 					// TODO handle error
 					return next(err);
 				}
 
-				res.json({result: 'success', token: results});
-				console.log("a user signed in, id: " + results.userId);
+				res.json({result: 'success', data: results});
+				console.log("a user logged in, id: " + results.id);
 			}
 		);
 	}
 );
 
-userRoute.get('/get_all_activities',
+userRoute.get('/get_all_participated_activities',
 	tokenAuthentication,
 	(req, res, next) => {
 		const params = {user_id: req.user.id};
-		activityService.getAllActivitiesByUserId(params,
+		activityService.getAllParticipatedActivitiesByUserId(params,
 			(err, results) => {
 				if (err) {
 					// TODO handle error
@@ -58,6 +58,24 @@ userRoute.get('/get_all_activities',
 
 				res.json({result: 'success', data: results});
 				console.log("a user got all participated activities (" + results.length + ") , id: " + req.user.id);
+			}
+		);
+	}
+);
+
+userRoute.get('/get_all_sponsored_activities',
+	tokenAuthentication,
+	(req, res, next) => {
+		const params = {user_id: req.user.id};
+		activityService.getAllSponsoredActivitiesByUserId(params,
+			(err, results) => {
+				if (err) {
+					// TODO handle error
+					return next(err);
+				}
+
+				res.json({result: 'success', data: results});
+				console.log("a user got all sponsored activities (" + results.length + ") , id: " + req.user.id);
 			}
 		);
 	}

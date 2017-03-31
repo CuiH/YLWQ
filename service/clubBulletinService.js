@@ -61,6 +61,28 @@ const clubBulletinService = {
 			}
 		);
 	},
+
+	/* params = {club_id} */
+	/* callback: (err, results = {clubBulletin}) */
+	getLatestClubBulletinByClubId: (params, callback) => {
+		// TODO verify params
+
+
+		/*
+		 a) get the latest 'club_bulletin' by [club_id]
+		 */
+		clubBulletinModel.findLatestOneByClubId(params,
+			(err, results) => {
+				if (err) {
+					return callback(err, null);
+				}
+
+				callback(null, {clubBulletin: results[0]});
+
+
+			}
+		);
+	},
 };
 
 module.exports = clubBulletinService;

@@ -76,6 +76,19 @@ const activityModel = {
 		);
 	},
 
+	/* params = {sponsor_user_id} */
+	findAllByUserId2: (params, callback) => {
+		query(activitySql.selectAllByUserId, [params.sponsor_user_id],
+			(err, results, fields) => {
+				if (err) {
+					return callback(err, null);
+				}
+
+				callback(null, results);
+			}
+		);
+	},
+
 	/* params = {id, activity_bill_status} */
 	updateActivityBillStatusById: (params, callback) => {
 		query(activitySql.updateActivityBillStatusById, [params.activity_bill_status, params.id],

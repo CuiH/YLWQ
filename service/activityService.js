@@ -84,14 +84,34 @@ const activityService = {
 
 	/* params = {user_id} */
 	/* callback: (err, results = {activities}) */
-	getAllActivitiesByUserId: (params, callback) => {
+	getAllParticipatedActivitiesByUserId: (params, callback) => {
 		// TODO verify params
 
 
 		/*
-		 a) get all 'activity' by [user_id], using the 'user_activity_map'
+		 a) get all participated 'activity' by [user_id], using the 'user_activity_map'
 		 */
 		activityModel.findAllByUserId(params,
+			(err, results) => {
+				if (err) {
+					return callback(err, null);
+				}
+
+				callback(null, {activities: results});
+			}
+		);
+	},
+
+	/* params = {user_id} */
+	/* callback: (err, results = {activities}) */
+	getAllSponsoredActivitiesByUserId: (params, callback) => {
+		// TODO verify params
+
+
+		/*
+		 a) get all sponsored 'activity' by [user_id], using the 'user_activity_map'
+		 */
+		activityModel.findAllByUserId2({sponsor_user_id: params.user_id},
 			(err, results) => {
 				if (err) {
 					return callback(err, null);
