@@ -30,6 +30,19 @@ const cluMessageModel = {
 				callback(null, results);
 			}
 		);
+	},
+
+	/* params = {club_id} */
+	findLatestThreeByClubId: (params, callback) => {
+		query(clubMessageSql.selectLatestThreeByClubId, [params.club_id],
+			(err, results, fields) => {
+				if (err) {
+					return callback(err, null);
+				}
+
+				callback(null, results);
+			}
+		);
 	}
 };
 

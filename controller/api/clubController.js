@@ -29,6 +29,7 @@ clubRoute.post('/create',
 				}
 
 				req.clubId = results.clubId;
+				res.json({result: 'success'});
 				console.log("a user created a club (" + results.clubId + "), id: " + req.user.id);
 				next();
 			}
@@ -47,10 +48,8 @@ clubRoute.post('/create',
 		clubMessageService.createClubMessage(params,
 			(err, results) => {
 				if (err) {
-					return next(err);
+					console.log(err);
 				}
-
-				res.json({result: 'success'});
 			}
 		);
 	}
@@ -72,12 +71,12 @@ clubRoute.get('/search',
 	}
 );
 
-clubRoute.get('/get_all_messages',
+clubRoute.get('/get_latest_three_club_messages',
 	tokenAuthentication,
 	clubAuthentication.memberAccess,
 	(req, res, next) => {
 		const params = {club_id: req.query.club_id};
-		clubMessageService.getAllClubMessagesByClubId(params,
+		clubMessageService.getLatestThreeClubMessagesByClubId(params,
 			(err, results) => {
 				if (err) {
 					// TODO handle error

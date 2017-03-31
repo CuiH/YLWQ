@@ -193,7 +193,7 @@ const userService = {
 		/*
 		 a) get all admin 'user' by [club_id]
 		 */
-		userClubMapModel.findAllByClubIdAndRole(params,
+		userClubMapModel.findAllAdminsByClubId(params,
 			(err, results) => {
 				if (err) {
 					return callback(err, null);

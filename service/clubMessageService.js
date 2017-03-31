@@ -29,9 +29,29 @@ const clubMessageService = {
 
 
 		/*
-		 a) get all 'club_message' by [id]
+		 a) get all 'club_message' by [club_id]
 		 */
 		clubMessageModel.findAllByClubId(params,
+			(err, results) => {
+				if (err) {
+					return callback(err, null);
+				}
+
+				callback(null, {clubMessages: results});
+			}
+		);
+	},
+
+	/* params = {club_id} */
+	/* callback: (err, results = {clubMessages}) */
+	getLatestThreeClubMessagesByClubId: (params, callback) => {
+		// TODO verify params
+
+
+		/*
+		 a) get latest three 'club_message' by [club_id]
+		 */
+		clubMessageModel.findLatestThreeByClubId(params,
 			(err, results) => {
 				if (err) {
 					return callback(err, null);

@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const applicationService = require('../../service/applicationService');
 const notificationService = require('../../service/notificationService');
 const userService = require('../../service/userService');
+const clubMessageService = require('../../service/clubMessageService');
+
 
 const tokenAuthentication = require('../../middleware/tokenAuthentication');
 const clubAuthentication = require('../../middleware/clubAuthentication');
@@ -11,8 +13,8 @@ const applicationAuthentication = require('../../middleware/applicationAuthentic
 
 const value = require('../../config/value');
 
-const applicationRoute = express.Router();
 
+const applicationRoute = express.Router();
 
 applicationRoute.post('/create',
 	tokenAuthentication,
@@ -26,7 +28,6 @@ applicationRoute.post('/create',
 		applicationService.createApplication(params,
 			(err, results) => {
 				if (err) {
-					// TODO handle error
 					return next(err);
 				}
 
@@ -40,7 +41,6 @@ applicationRoute.post('/create',
 		userService.getAllAdminsByClubId(req.body,
 			(err, results) => {
 				if (err) {
-					// TODO handle error
 					return next(err);
 				}
 
@@ -61,7 +61,6 @@ applicationRoute.post('/create',
 		notificationService.sendMultipleNotifications(params,
 			(err, results) => {
 				if (err) {
-					// TODO handle error
 					return next(err);
 				}
 
@@ -86,6 +85,37 @@ applicationRoute.post('/accept',
 
 				res.json({result: 'success'});
 				console.log("a user accepted an application (" + req.body.application_id + "), id: " + req.user.id);
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		applicationService.getApplicationById({id: req.body.application_id},
+			(err, results) => {
+				if (err) {
+					console.log(err);
+				}
+
+				req.application = results.application;
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		let params = {
+			operator_user_id: req.user.id,
+			club_id: req.application.club_id,
+			title: null,
+			content: null,
+			type: value.CLUB_MESSAGE_TYPE_ENROLLMENT,
+			target_id: req.application.applicant_user_id,
+			target_name: req.application.applicant_username
+		};
+		clubMessageService.createClubMessage(params,
+			(err, results) => {
+				if (err) {
+					console.log(err);
+				}
 			}
 		);
 	}

@@ -86,7 +86,7 @@ const userClubMapModel = {
 	},
 
 	/* params = {club_id} */
-	findAllByClubIdAndRole: (params, callback) => {
+	findAllAdminsByClubId: (params, callback) => {
 		query(userClubMapSql.selectAllByClubIdAndRole, [params.club_id,
 				value.USER_CLUB_ROLE_ADMIN, value.USER_CLUB_ROLE_FOUNDER],
 			(err, results, fields) => {

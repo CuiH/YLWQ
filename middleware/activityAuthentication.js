@@ -11,7 +11,7 @@ const activityAuthentication = {
 	readAccess: (req, res, next) => {
 		userClubMapModel.findOneByUserIdAndActivityId({
 				user_id: req.user.id,
-				activity_id: req.body ? req.body.activity_id : (req.query.activity_id ? req.query.activity_id : req.params.activity_id)
+				activity_id: req.body ? req.body.activity_id : (req.query.activity_id || req.params.activity_id)
 			}, (err, results) => {
 				if (err) {
 					return next(err);

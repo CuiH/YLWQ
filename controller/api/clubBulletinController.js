@@ -2,13 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const clubBulletinService = require('../../service/clubBulletinService');
+const clubMessageService = require('../../service/clubMessageService');
 
 const tokenAuthentication = require('../../middleware/tokenAuthentication');
 const clubAuthentication = require('../../middleware/clubAuthentication');
 const clubBulletinAuthentication = require('../../middleware/clubBulletinAuthentication');
 
-const clubBulletinRoute = express.Router();
+const value = require('../../config/value');
 
+
+const clubBulletinRoute = express.Router();
 
 clubBulletinRoute.post('/create',
 	tokenAuthentication,
@@ -24,11 +27,31 @@ clubBulletinRoute.post('/create',
 					return next(err);
 				}
 
+				req.clubBulletinId = results.clubBulletinId;
 				res.json({result: 'success'});
 				console.log("a user published a bulletin (" + results.clubBulletinId + "), id: " + params.publisher_user_id);
+				next();
 			}
 		);
 	}
+	// (req, res, next) => {
+	// 	let params = {
+	// 		operator_user_id: req.user.id,
+	// 		club_id: req.body.club_id,
+	// 		title: null,
+	// 		content: null,
+	// 		type: value.CLUB_MESSAGE_TYPE_BULLETIN,
+	// 		target_id: req.clubBulletinId,
+	// 		target_name: null
+	// 	};
+	// 	clubMessageService.createClubMessage(params,
+	// 		(err, results) => {
+	// 			if (err) {
+	// 				console.log(err);
+	// 			}
+	// 		}
+	// 	);
+	// }
 );
 
 clubBulletinRoute.get('/get_latest_one',

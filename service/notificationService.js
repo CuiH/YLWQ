@@ -66,21 +66,28 @@ const notificationService = {
 		 b) create multiple 'user_notification_map'
 		 */
 		let notificationId = null;
-		generateCreateNotificationPromise({title: params.title, content: params.content, type: params.type,
-			target_id: params.target_id, target_name: params.target_name})
-			.then((result) => {
-				notificationId = result.insertId;
-				let promises = [];
-				for (let i = 0; i < params.receivers.length; i++) {
-					promises.push(generateCreateUserNotificationMapPromise({user_id: params.receivers[i].user_id,
-						notification_id: notificationId}));
-				}
-				return Promise.all(promises);
-			}).then(() => {
-				callback(null, {notificationId: notificationId});
-			}).catch((err) => {
-				callback(err, null);
-			});
+		generateCreateNotificationPromise({
+			title: params.title,
+			content: params.content,
+			type: params.type,
+			target_id: params.target_id,
+			target_name: params.target_name
+		})
+		.then((result) => {
+			notificationId = result.insertId;
+			let promises = [];
+			for (let i = 0; i < params.receivers.length; i++) {
+				promises.push(generateCreateUserNotificationMapPromise({
+					user_id: params.receivers[i].user_id,
+					notification_id: notificationId
+				}));
+			}
+			return Promise.all(promises);
+		}).then(() => {
+			callback(null, {notificationId: notificationId});
+		}).catch((err) => {
+			callback(err, null);
+		});
 	},
 
 	/* params = {user_id} */
