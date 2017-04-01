@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 
 const activityService = require('../../service/activityService');
 const userService = require('../../service/userService');
+const clubService = require('../../service/clubService');
+const notificationService = require('../../service/notificationService');
 
 const clubAuthentication = require('../../middleware/clubAuthentication');
 const activityAuthentication = require('../../middleware/activityAuthentication');
@@ -17,7 +19,7 @@ const activityRoute = express.Router();
 activityRoute.post('/create',
 	tokenAuthentication,
 	bodyParser.urlencoded({extended: false}),
-	clubAuthentication.adminAccess,
+	clubAuthentication.memberAccess,
 	(req, res, next) => {
 		const params = req.body;
 		params.sponsor_user_id = req.user.id;
@@ -48,10 +50,53 @@ activityRoute.post('/create',
 		clubMessageService.createClubMessage(params,
 			(err, results) => {
 				if (err) {
-					console.log()
+					return console.log(err);
 				}
 
-				res.json({result: 'success'});
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		clubService.getClubById({id: req.body.club_id},
+			(err, results) => {
+				if (err) {
+					return console.log(err);
+				}
+
+				req.club = results.club;
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		userService.getAllMembersByClubId({club_id: req.body.club_id},
+			(err, results) => {
+				if (err) {
+					return next(err);
+				}
+
+				req.members = results.members;
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		let params = {
+			title: "新活动提醒",
+			content: null,
+			type: value.NOTIFICATION_TYPE_ACTIVITY_CREATION,
+			object_id: req.activityId,
+			object_name: null,
+			subject_id: req.club.id,
+			subject_name: req.club.name,
+			receivers: req.members,
+		};
+		notificationService.sendMultipleNotifications(params,
+			(err, results) => {
+				if (err) {
+					return console.log(err);
+				}
 			}
 		);
 	}

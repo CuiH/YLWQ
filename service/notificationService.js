@@ -35,7 +35,7 @@ const generateCreateUserNotificationMapPromise = (params) => {
 };
 
 const notificationService = {
-	/* params = {title, content, type, target_id, target_name, receiver_user_id} */
+	/* params = {title, content, type, object_id, object_name, subject_id, subject_name, receiver_user_id} */
 	/* callback: (err, results = {notificationId}) */
 	sendNotification: (params, callback) => {
 		// TODO verify params
@@ -43,19 +43,28 @@ const notificationService = {
 
 		/*
 		 a) create a new 'notification'
+		 b) create a new 'user_notification_map'
 		 */
-		notificationModel.create(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {notificationId: results.insertId});
-			}
-		);
+		let notificationId = null;
+		generateCreateNotificationPromise({
+			title: params.title,
+			content: params.content,
+			type: params.type,
+			object_id: params.object_id,
+			object_name: params.object_name,
+			subject_id: params.subject_id,
+			subject_name: params.subject_name,
+		})
+		.then((result) => {
+			notificationId = result.insertId;
+			return generateCreateUserNotificationMapPromise({
+				user_id: params.receiver_user_id,
+				notification_id: notificationId
+			})
+		})
 	},
 
-	/* params = {title, content, type, target_id, target_name, receivers = [{user_id}]} */
+	/* params = {title, content, type, object_id, object_name, subject_id, subject_name, receivers = [{user_id}]} */
 	/* callback: (err, results = {notificationId}) */
 	sendMultipleNotifications: (params, callback) => {
 		// TODO verify params
@@ -70,15 +79,17 @@ const notificationService = {
 			title: params.title,
 			content: params.content,
 			type: params.type,
-			target_id: params.target_id,
-			target_name: params.target_name
+			object_id: params.object_id,
+			object_name: params.object_name,
+			subject_id: params.subject_id,
+			subject_name: params.subject_name,
 		})
 		.then((result) => {
 			notificationId = result.insertId;
 			let promises = [];
 			for (let i = 0; i < params.receivers.length; i++) {
 				promises.push(generateCreateUserNotificationMapPromise({
-					user_id: params.receivers[i].user_id,
+					user_id: params.receivers[i].user_id || params.receivers[i].id,
 					notification_id: notificationId
 				}));
 			}

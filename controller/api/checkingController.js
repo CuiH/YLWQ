@@ -53,4 +53,20 @@ checkingRoute.get('/user_club_map_admin',
 	}
 );
 
+checkingRoute.get('/application_unread',
+	(req, res, next) => {
+		checkingService.checkApplicationUnread({user_id: req.query.user_id, club_id: req.query.club_id},
+			(err, results) => {
+				if (err) {
+					// TODO handle error
+					return next(err);
+				}
+
+				res.json({result: 'success', data: results});
+				console.log("a user checked application_unread");
+			}
+		);
+	}
+);
+
 module.exports = checkingRoute;

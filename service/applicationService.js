@@ -71,7 +71,7 @@ const generateUpdateClubPromise = (params) => {
 };
 
 const applicationService = {
-	/* params = {applicant_user_id, club_id} */
+	/* params = {applicant_user_id, club_id, message} */
 	/* callback: (err, results = {applicationId}) */
 	createApplication: (params, callback) => {
 		// TODO verify params

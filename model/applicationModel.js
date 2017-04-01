@@ -6,10 +6,10 @@ const value = require('../config/value');
 
 
 const applicationModel = {
-	/* params = {applicant_user_id, club_id} */
+	/* params = {applicant_user_id, club_id, message} */
 	create: (params, callback) => {
 		let now = new Date();
-		query(applicationSql.insert, [params.applicant_user_id, params.club_id, now, value.APPLICATION_STATUS_UNHANDLED],
+		query(applicationSql.insert, [params.applicant_user_id, params.club_id, now, value.APPLICATION_STATUS_UNHANDLED, params.message],
 			(err, results, fields) => {
 				if (err) {
 					return callback(err, null);

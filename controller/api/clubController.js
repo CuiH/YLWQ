@@ -48,7 +48,7 @@ clubRoute.post('/create',
 		clubMessageService.createClubMessage(params,
 			(err, results) => {
 				if (err) {
-					console.log(err);
+					return console.log(err);
 				}
 			}
 		);

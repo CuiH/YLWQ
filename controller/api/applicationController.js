@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const applicationService = require('../../service/applicationService');
 const notificationService = require('../../service/notificationService');
 const userService = require('../../service/userService');
+const clubService = require('../../service/clubService');
 const clubMessageService = require('../../service/clubMessageService');
 
 
@@ -38,7 +39,7 @@ applicationRoute.post('/create',
 		);
 	},
 	(req, res, next) => {
-		userService.getAllAdminsByClubId(req.body,
+		userService.getAllAdminsByClubId({club_id: req.body.club_id},
 			(err, results) => {
 				if (err) {
 					return next(err);
@@ -51,11 +52,13 @@ applicationRoute.post('/create',
 	},
 	(req, res, next) => {
 		let params = {
-			title: null,
+			title: "群系统消息",
 			content: null,
 			type: value.NOTIFICATION_TYPE_APPLICATION,
-			target_id: req.applicationId,
-			target_name: null,
+			object_id: req.applicationId,
+			object_name: null,
+			subject_id: null,
+			subject_name: null,
 			receivers: req.admins,
 		};
 		notificationService.sendMultipleNotifications(params,
@@ -93,7 +96,7 @@ applicationRoute.post('/accept',
 		applicationService.getApplicationById({id: req.body.application_id},
 			(err, results) => {
 				if (err) {
-					console.log(err);
+					return console.log(err);
 				}
 
 				req.application = results.application;
@@ -114,7 +117,40 @@ applicationRoute.post('/accept',
 		clubMessageService.createClubMessage(params,
 			(err, results) => {
 				if (err) {
-					console.log(err);
+					return console.log(err);
+				}
+
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		clubService.getClubById({id: req.application.club_id},
+			(err, results) => {
+				if (err) {
+					return console.log(err);
+				}
+
+				req.club = results.club;
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		let params = {
+			title: "群系统消息",
+			content: null,
+			type: value.NOTIFICATION_TYPE_JOIN_CLUB,
+			object_id: req.club.id,
+			object_name: req.club.name,
+			subject_id: null,
+			subject_name: null,
+			receiver_user_id: req.application.applicant_user_id,
+		};
+		notificationService.sendNotification(params,
+			(err, results) => {
+				if (err) {
+					return console.log(err);
 				}
 			}
 		);
@@ -136,6 +172,50 @@ applicationRoute.post('/reject',
 
 				res.json({result: 'success'});
 				console.log("a user rejected an application (" + req.query.application_id + "), id: " + req.user.id);
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		applicationService.getApplicationById({id: req.body.application_id},
+			(err, results) => {
+				if (err) {
+					return console.log(err);
+				}
+
+				req.application = results.application;
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		clubService.getClubById({id: req.application.club_id},
+			(err, results) => {
+				if (err) {
+					return console.log(err);
+				}
+
+				req.club = results.club;
+				next();
+			}
+		);
+	},
+	(req, res, next) => {
+		let params = {
+			title: "群系统消息",
+			content: null,
+			type: value.NOTIFICATION_TYPE_APPLICATION_REJECTION,
+			object_id: req.club.id,
+			object_name: req.club.name,
+			subject_id: null,
+			subject_name: null,
+			receiver_user_id: req.application.applicant_user_id,
+		};
+		notificationService.sendNotification(params,
+			(err, results) => {
+				if (err) {
+					return console.log(err);
+				}
 			}
 		);
 	}

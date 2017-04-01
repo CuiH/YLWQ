@@ -8,20 +8,21 @@ const clubAuthentication = {
 	/* check if the 'user' is an admin of the 'club', and if the 'club' exists */
 	/* params = {user_id, club_id} */
 	adminAccess: (req, res, next) => {
-		userClubMapModel.findOneByUserIdAndClubId({user_id: req.user.id, club_id: req.body.club_id},
-			(err, results) => {
-				if (err) {
-					return next(err);
-				}
-
-				if (results.length == 0 || ![value.USER_CLUB_ROLE_ADMIN, value.USER_CLUB_ROLE_FOUNDER]
-						.includes(results[0].role)) {
-					return next(new Error("no access."));
-				}
-
-				next();
+		userClubMapModel.findOneByUserIdAndClubId({
+			user_id: req.user.id,
+			club_id: req.body.club_id
+		}, (err, results) => {
+			if (err) {
+				return next(err);
 			}
-		);
+
+			if (results.length == 0 || ![value.USER_CLUB_ROLE_ADMIN, value.USER_CLUB_ROLE_FOUNDER]
+					.includes(results[0].role)) {
+				return next(new Error("no access."));
+			}
+
+			next();
+		});
 	},
 
 	/* check if the 'user' is a member of the 'club', and if the 'club' exists */
@@ -29,7 +30,7 @@ const clubAuthentication = {
 	memberAccess: (req, res, next) => {
 		userClubMapModel.findOneByUserIdAndClubId({
 			user_id: req.user.id,
-			club_id: req.query ? req.query.club_id : req.body.club_id
+			club_id: req.body ? req.body.club_id : req.query.club_id
 		}, (err, results) => {
 			if (err) {
 				return next(err);

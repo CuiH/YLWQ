@@ -1,4 +1,5 @@
 const userClubMapModel = require('../model/userClubMapModel');
+const applicationModel = require('../model/applicationModel');
 const userActivityMapModel = require('../model/userActivityMapModel');
 
 const value = require('../config/value');
@@ -77,6 +78,32 @@ const checkingService = {
 				return callback(null, {result: true});
 			}
 		);
+	},
+
+	/* params = {user_id, club_id} */
+	/* callback: (err, results = {result}) */
+	checkApplicationUnread: (params, callback) => {
+		// TODO verify params
+
+
+		/*
+		 a) check whether the has sent an unread 'application' to the 'club'
+		 */
+		applicationModel.findAllByApplicantUserIdAndClubIdAndStatus({
+			applicant_user_id: params.user_id,
+				club_id: params.club_id,
+				status: value.APPLICATION_STATUS_UNHANDLED
+		}, (err, results) => {
+			if (err) {
+				return callback(err, null);
+			}
+
+			if (results.length == 0) {
+				return callback(null, {result: false});
+			}
+
+			return callback(null, {result: true});
+		});
 	},
 };
 

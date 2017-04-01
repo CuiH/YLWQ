@@ -1,5 +1,5 @@
 const application = {
-	insert: 'INSERT INTO application (applicant_user_id, club_id, create_time, status) VALUES (?, ?, ?, ?)',
+	insert: 'INSERT INTO application (applicant_user_id, club_id, create_time, status, message) VALUES (?, ?, ?, ?, ?)',
 	selectOneByApplicantUserIdAndClubIdAndStatus: 'SELECT * FROM application WHERE applicant_user_id = ? AND club_id = ? AND status = ?',
 	selectOneById: 'SELECT a.*, u.username as applicant_username, c.name as club_name ' +
 	               'FROM application a, user u, club c ' +
