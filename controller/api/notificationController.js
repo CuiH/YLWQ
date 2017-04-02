@@ -20,7 +20,8 @@ notificationRoute.post('/read',
 			.then((results) => {
 				res.json({result: 'success', data: results});
 				console.log("a user read a notification.");
-			});
+			})
+			.catch(err => next(err));
 	}
 );
 

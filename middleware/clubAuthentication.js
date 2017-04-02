@@ -11,18 +11,14 @@ const clubAuthentication = {
 		userClubMapModel.findOneByUserIdAndClubId({
 			user_id: req.user.id,
 			club_id: req.body.club_id
-		}, (err, results) => {
-			if (err) {
-				return next(err);
-			}
-
+		}).then((results) => {
 			if (results.length == 0 || ![value.USER_CLUB_ROLE_ADMIN, value.USER_CLUB_ROLE_FOUNDER]
 					.includes(results[0].role)) {
 				return next(new Error("no access."));
 			}
 
 			next();
-		});
+		}).catch(err => next(err));
 	},
 
 	/* check if the 'user' is a member of the 'club', and if the 'club' exists */
@@ -31,17 +27,13 @@ const clubAuthentication = {
 		userClubMapModel.findOneByUserIdAndClubId({
 			user_id: req.user.id,
 			club_id: req.body ? req.body.club_id : req.query.club_id
-		}, (err, results) => {
-			if (err) {
-				return next(err);
-			}
-
+		}).then((results) => {
 			if (results.length == 0) {
 				return next(new Error('no access.'));
 			}
 
 			next();
-		});
+		}).catch(err => next(err));
 	},
 
 	/* check if the payer in all of the 'activity_bill_item' is a member of the 'club' that holds the 'activity'*/

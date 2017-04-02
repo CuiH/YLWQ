@@ -34,16 +34,18 @@ const userClubMapModel = {
 	},
 
 	/* params = {user_id, club_id} */
-	findOneByUserIdAndClubId: (params, callback) => {
-		query(userClubMapSql.selectOneByUserIdAndClubId, [params.user_id, params.club_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneByUserIdAndClubId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubMapSql.selectOneByUserIdAndClubId, [params.user_id, params.club_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {user_id, activity_id} */
@@ -86,17 +88,19 @@ const userClubMapModel = {
 	},
 
 	/* params = {club_id} */
-	findAllAdminsByClubId: (params, callback) => {
-		query(userClubMapSql.selectAllByClubIdAndRole, [params.club_id,
-				value.USER_CLUB_ROLE_ADMIN, value.USER_CLUB_ROLE_FOUNDER],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllAdminsByClubId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubMapSql.selectAllByClubIdAndRole, [params.club_id,
+					value.USER_CLUB_ROLE_ADMIN, value.USER_CLUB_ROLE_FOUNDER],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {activity_id} */

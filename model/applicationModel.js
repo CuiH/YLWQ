@@ -21,17 +21,19 @@ const applicationModel = {
 	},
 
 	/* params = {applicant_user_id, club_id, status} */
-	findAllByApplicantUserIdAndClubIdAndStatus: (params, callback) => {
-		let now = new Date();
-		query(applicationSql.selectOneByApplicantUserIdAndClubIdAndStatus, [params.applicant_user_id, params.club_id, params.status],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByApplicantUserIdAndClubIdAndStatus: (params) => {
+		return new Promise((resolve, reject) => {
+			query(applicationSql.selectOneByApplicantUserIdAndClubIdAndStatus, [params.applicant_user_id, params.club_id, params.status],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+
 	},
 
 	/* params = {id} */

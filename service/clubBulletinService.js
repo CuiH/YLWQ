@@ -3,23 +3,15 @@ const clubBulletinModel = require('../model/clubBulletinModel');
 
 const clubBulletinService = {
 	/* params = {publisher_user_id, title, content, club_id} */
-	/* callback: (err, results = {clubBulletinId}) */
-	createClubBulletin: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {clubBulletinId}) */
+	createClubBulletin: (params) => {
 		/*
 		 a) create a new 'club_bulletin'
 		 */
-		clubBulletinModel.create(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {clubBulletinId: results.insertId});
-			}
-		);
+		return clubBulletinModel.create(params)
+			.then((results) => {
+				return {clubBulletinId: results.insertId};
+			});
 	},
 
 	/* params = {club_id} */
@@ -42,46 +34,16 @@ const clubBulletinService = {
 		);
 	},
 
-	/* params = {id} */
-	/* callback: (err, results = {clubBulletin}) */
-	getClubBulletinById: (params, callback) => {
-		// TODO verify params
-
-
-		/*
-		 a) get a 'club_bulletin' by [id]
-		 */
-		clubBulletinModel.findOneById(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {clubBulletin: results[0]});
-			}
-		);
-	},
-
 	/* params = {club_id} */
-	/* callback: (err, results = {clubBulletin}) */
+	/* results = {clubBulletin} */
 	getLatestClubBulletinByClubId: (params, callback) => {
-		// TODO verify params
-
-
 		/*
 		 a) get the latest 'club_bulletin' by [club_id]
 		 */
-		clubBulletinModel.findLatestOneByClubId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {clubBulletin: results[0]});
-
-
-			}
-		);
+		return clubBulletinModel.findLatestOneByClubId(params)
+			.then((results) => {
+				return {clubBulletin: results[0]};
+			});
 	},
 };
 

@@ -45,16 +45,19 @@ const userActivityMapModel = {
 	},
 
 	/* params = {user_id, activity_id} */
-	findOneByUserIdAndActivityId: (params, callback) => {
-		query(userActivityMapSql.selectOneByUserIdAndActivityId, [params.user_id, params.activity_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneByUserIdAndActivityId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userActivityMapSql.selectOneByUserIdAndActivityId, [params.user_id, params.activity_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+
 	}
 };
 
