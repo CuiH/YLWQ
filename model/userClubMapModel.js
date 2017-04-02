@@ -51,16 +51,18 @@ const userClubMapModel = {
 	},
 
 	/* params = {user_id, activity_id} */
-	findOneByUserIdAndActivityId: (params, callback) => {
-		query(userClubMapSql.selectOneByUserIdAndActivityId, [params.user_id, params.activity_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneByUserIdAndActivityId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubMapSql.selectOneByUserIdAndActivityId, [params.user_id, params.activity_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {user_id, application_id} */

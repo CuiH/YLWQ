@@ -10,20 +10,15 @@ const activityAuthentication = {
 	/* params = {user_id, activity_id} */
 	readAccess: (req, res, next) => {
 		userClubMapModel.findOneByUserIdAndActivityId({
-				user_id: req.user.id,
-				activity_id: req.body ? req.body.activity_id : (req.query.activity_id || req.params.activity_id)
-			}, (err, results) => {
-				if (err) {
-					return next(err);
-				}
-
-				if (results.length == 0) {
-					return next(new Error('no access.'));
-				}
-
-				next();
+			user_id: req.user.id,
+			activity_id: req.body ? req.body.activity_id : (req.query.activity_id || req.params.activity_id)
+		}).then((results) => {
+			if (results.length == 0) {
+				return next(new Error('no access.'));
 			}
-		);
+
+			next();
+		}).catch(err => next(err));
 	},
 
 	/* check if the 'user' is the sponsor of the 'activity', and if the 'activity' exists */

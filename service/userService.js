@@ -68,21 +68,14 @@ const userService = {
 	},
 
 	/* params = {activity_id} */
-	/* callback: (err, results = {participants}) */
-	getAllParticipantsByActivityId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {participants} */
+	getAllParticipantsByActivityId: (params) => {
 		/*
 		 a) get all 'user' by [activity_id], using 'user_activity_map'
 		 */
-		userModel.findAllByActivityId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {participants: results});
+		return userModel.findAllByActivityId(params)
+			.then((results) => {
+				return {participants: results};
 			});
 	},
 

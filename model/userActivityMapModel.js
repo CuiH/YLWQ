@@ -5,17 +5,19 @@ const userActivityMapSql = require('../sql/userActivityMapSql');
 
 const userActivityMapModel = {
 	/* params = {activity_id, user_id} */
-	create: (params, callback) => {
-		const now = new Date();
-		query(userActivityMapSql.insert, [params.user_id, params.activity_id, now],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(userActivityMapSql.insert, [params.user_id, params.activity_id, now],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {activity_id} */

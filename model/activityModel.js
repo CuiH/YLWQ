@@ -7,47 +7,55 @@ const value = require('../config/value');
 
 
 const activityModel = {
-	/* params = {sponsor_user_id, club_id, name, start_time, end_time, location, brief_intro, note, status} */
-	create: (params, callback) => {
-		let now = new Date();
-		query(activitySql.insert, [params.sponsor_user_id, params.club_id, params.name, params.start_time,
-				params.end_time, params.location, params.brief_intro, params.note,
-				params.status, now, value.ACTIVITY_BILL_STATUS_UNPUBLISHED],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
+	/* params = {sponsor_user_id, club_id, name, start_time, end_time, location, brief_intro, note} */
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(activitySql.insert, [params.sponsor_user_id, params.club_id,
+					params.name, params.start_time, params.end_time, params.location,
+					params.brief_intro, params.note, now, value.ACTIVITY_BILL_STATUS_UNPUBLISHED],
+				(err, results, fields) => {
+					if (err) {
+						return reject(null);
+					}
+
+					resolve(results);
 				}
+			);
+		});
 
-				callback(null, results);
-			}
-		);
-	},
-
-	// results: a.*, u.username
-	/* params = {id} */
-	findOneById: (params, callback) => {
-		query(userActivityJoinSql.selectOneByActivityId, [params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, results);
-			}
-		);
 	},
 
 	/* params = {id} */
-	increaseParticipantNumberByOneById: (params, callback) => {
-		query(activitySql.increaseParticipantNumberByOneById, [params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userActivityJoinSql.selectOneByActivityId, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+
+	},
+
+	/* params = {id} */
+	increaseParticipantNumberByOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activitySql.increaseParticipantNumberByOneById, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
+
 	},
 
 	/* params = {club_id} */

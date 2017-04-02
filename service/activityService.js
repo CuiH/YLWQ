@@ -5,80 +5,30 @@ const userActivityMapModel = require('../model/userActivityMapModel');
 const values = require('../config/value');
 
 
-// create a new 'user_activity_map'
-/* params = {user_id, activity_id} */
-const generateCreateUserActivityMapPromise = (params) => {
-	return new Promise((resolve, reject) => {
-		userActivityMapModel.create(params,
-			(err, results) => {
-				if (err) {
-					return reject(err);
-				}
-
-				resolve();
-			}
-		);
-	});
-};
-
-// update the [participant_number] in 'activity'
-/* params = {activity_id} */
-const generateUpdateActivityPromise = (params) => {
-	return new Promise((resolve, reject) => {
-		activityModel.increaseParticipantNumberByOneById({id: params.activity_id},
-			(err, results) => {
-				if (err) {
-					return reject(err, null);
-				}
-
-				resolve();
-			}
-		);
-	})
-};
-
-
 const activityService = {
 	/* params = {sponsor_user_id, club_id, name, start_time, end_time, location, brief_intro, note} */
-	/* callback: (err, results = {activityId}) */
-	createActivity: (params, callback) => {
-		// TODO verify params
-
+	/* results = {activityId} */
+	createActivity: (params) => {
 		/*
 		 a) create a new 'activity'
 		 */
-
-		params.status = values.ACTIVITY_STATUS_RECRUITING;
-		activityModel.create(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {activityId: results.insertId});
-			}
-		);
+		return activityModel.create(params)
+			.then((result) => {
+				return {activityId: result.insertId};
+			});
 	},
 
 	/* params = {user_id, activity_id} */
-	/* callback: (err, results = {}) */
-	attendActivity: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {} */
+	attendActivity: (params) => {
 		/*
 		 a) create a new 'user_activity_map'
 		 b) update the [participant_number] in 'activity'
 		 */
-		generateCreateUserActivityMapPromise(params)
+		return userActivityMapModel.create(params)
+			.then(results => activityModel.increaseParticipantNumberByOneById({id: params.activity_id}))
 			.then(() => {
-				return generateUpdateActivityPromise(params);
-			})
-			.then(() => {
-				callback(null, null);
-			})
-			.catch((err) => {
-				callback(err, null);
+				return {};
 			});
 	},
 
@@ -119,27 +69,15 @@ const activityService = {
 	},
 
 	/* params = {id} */
-	/* callback: (err, results = {activity}) */
-	getActivityById: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {activity} */
+	getActivityById: (params) => {
 		/*
 		 a) get the 'activity' by id
 		 */
-		activityModel.findOneById(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				if (results.length == 0) {
-					return callback(new Error('no such activity.'), null);
-				}
-
-				callback(null, {activity: results[0]});
-			}
-		);
+		return activityModel.findOneById(params)
+			.then((results) => {
+				return {activity: results[0]};
+			});
 	},
 };
 

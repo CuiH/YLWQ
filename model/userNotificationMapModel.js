@@ -5,16 +5,18 @@ const userNotificationMapSql = require('../sql/userNotificationMapSql');
 
 const userNotificationMapModel = {
 	/* params = {user_id, notification_id} */
-	create: (params, callback) => {
-		query(userNotificationMapSql.insert, [params.user_id, params.notification_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userNotificationMapSql.insert, [params.user_id, params.notification_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {user_id, notification_id} */

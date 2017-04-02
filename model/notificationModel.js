@@ -5,18 +5,20 @@ const notificationSql = require('../sql/notificationSql');
 
 const notificationModel = {
 	/* params = {title, content, type, object_id, object_name, subject_id, subject_name} */
-	create: (params, callback) => {
-		let now = new Date();
-		query(notificationSql.insert, [params.title, params.content, now, params.type,
-				params.object_id, params.object_name, params.subject_id, params.subject_name],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(notificationSql.insert, [params.title, params.content, now, params.type,
+					params.object_id, params.object_name, params.subject_id, params.subject_name],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {user_id} */
