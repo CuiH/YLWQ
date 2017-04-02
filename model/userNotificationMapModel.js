@@ -18,31 +18,35 @@ const userNotificationMapModel = {
 	},
 
 	/* params = {user_id, notification_id} */
-	updateIsReadById: (params, callback) => {
-		let now = new Date();
-		query(userNotificationMapSql.updateIsReadByUserIdAndNotification, [now, params.user_id, params.notification_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	updateIsReadByUserIdAndNotificationId: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(userNotificationMapSql.updateIsReadByUserIdAndNotificationId, [now, params.user_id, params.notification_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {user_id, notification_id} */
-	findOneById: (params, callback) => {
-		query(userNotificationMapSql.selectOneByUserIdAndNotificationId, [params.user_id, params.notification_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneByUserIdAndNotificationId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userNotificationMapSql.selectOneByUserIdAndNotificationId, [params.user_id, params.notification_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
-	},
+					resolve(results);
+				}
+			);
+		});
+	}
 };
 
 module.exports = userNotificationMapModel;

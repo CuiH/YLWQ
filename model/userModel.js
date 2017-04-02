@@ -7,83 +7,96 @@ const userClubJoinSql = require('../sql/userClubJoinSql');
 
 const userModel = {
 	/* params = {username, password} */
-	create: (params, callback) => {
-		let now = new Date();
-		query(userSql.insert, [params.username, params.password, now, now],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(userSql.insert, [params.username, params.password, now, now],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {username} */
-	findOneByUsername: (params, callback) => {
-		query(userSql.selectOneByUsername, [params.username],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneByUsername: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userSql.selectOneByUsername, [params.username],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {id} */
-	findOneById: (params, callback) => {
-		query(userSql.selectOneById, [params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userSql.selectOneById, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+
 	},
 
 	/* params = {id} */
-	updateLastLoginTimeById: (params, callback) => {
-		let now = new Date();
-		query(userSql.updateLastLoginTimeById, [now, params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	updateLastLoginTimeById: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(userSql.updateLastLoginTimeById, [now, params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {activity_id} */
-	findAllByActivityId: (params, callback) => {
-		query(userActivityJoinSql.selectAllByActivityId, [params.activity_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByActivityId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userActivityJoinSql.selectAllByActivityId, [params.activity_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {club_id} */
-	findAllByClubId: (params, callback) => {
-		query(userClubJoinSql.selectAllByClubId, [params.club_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByClubId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubJoinSql.selectAllByClubId, [params.club_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

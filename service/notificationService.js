@@ -102,43 +102,30 @@ const notificationService = {
 	},
 
 	/* params = {user_id} */
-	/* callback: (err, results = {notifications}) */
-	getAllNotificationsByUserId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {notifications} */
+	getAllNotificationsByUserId: (params) => {
 		/*
 		 a) get all 'notification' by [user_id]
 		 */
-		notificationModel.findAllByUserId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {notifications: results});
-			}
-		);
+		return notificationModel.findAllByUserId(params)
+			.then((results) => {
+				return {notifications: results};
+			});
 	},
 
 	/* params = {user_id, notification_id} */
-	/* callback: (err, results = {}) */
-	readNotification: (params, callback) => {
+	/* results = {} */
+	readNotification: (params) => {
 		// TODO verify params
 
 
 		/*
 		 a) update 'notification' by [user_id] and [notification_id]
 		 */
-		userNotificationMapModel.updateIsReadById(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {});
-			}
-		);
+		return userNotificationMapModel.updateIsReadByUserIdAndNotificationId(params)
+			.then((results) => {
+				return {};
+			});
 	},
 };
 

@@ -83,43 +83,27 @@ const activityService = {
 	},
 
 	/* params = {user_id} */
-	/* callback: (err, results = {activities}) */
-	getAllParticipatedActivitiesByUserId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {activities} */
+	getAllParticipatedActivitiesByUserId: (params) => {
 		/*
 		 a) get all participated 'activity' by [user_id], using the 'user_activity_map'
 		 */
-		activityModel.findAllByUserId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {activities: results});
-			}
-		);
+		return activityModel.findAllByUserId(params)
+			.then((results) => {
+				return {activities: results};
+			});
 	},
 
 	/* params = {user_id} */
-	/* callback: (err, results = {activities}) */
-	getAllSponsoredActivitiesByUserId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {activities} */
+	getAllSponsoredActivitiesByUserId: (params) => {
 		/*
 		 a) get all sponsored 'activity' by [user_id], using the 'user_activity_map'
 		 */
-		activityModel.findAllByUserId2({sponsor_user_id: params.user_id},
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {activities: results});
-			}
-		);
+		return activityModel.findAllByUserId2({sponsor_user_id: params.user_id})
+			.then((results) => {
+				return {activities: results};
+			});
 	},
 
 	/* params = {club_id} */

@@ -6,15 +6,17 @@ const userAccountSql = require('../sql/userAccountSql');
 const userAccountModel = {
 	/* params = {id, balance} */
 	create: (params, callback) => {
-		query(userAccountSql.insert, [params.id, params.balance],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+		return new Promise((resolve, reject) => {
+			query(userAccountSql.insert, [params.id, params.balance],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

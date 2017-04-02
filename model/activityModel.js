@@ -64,29 +64,33 @@ const activityModel = {
 	},
 
 	/* params = {user_id} */
-	findAllByUserId: (params, callback) => {
-		query(userActivityJoinSql.selectAllByUserId, [params.user_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByUserId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userActivityJoinSql.selectAllByUserId, [params.user_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {sponsor_user_id} */
-	findAllByUserId2: (params, callback) => {
-		query(activitySql.selectAllByUserId, [params.sponsor_user_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByUserId2: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activitySql.selectAllByUserId, [params.sponsor_user_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {id, activity_bill_status} */

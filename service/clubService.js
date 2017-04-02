@@ -63,23 +63,15 @@ const clubService = {
 	},
 
 	/* params = {user_id} */
-	/* callback: (err, results = {clubs}) */
-	getAllClubsByUserId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {clubs} */
+	getAllClubsByUserId: (params) => {
 		/*
 		 a) get all 'club' by [user_id], using 'user_club_map'
 		 */
-		clubModel.findAllByUserId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {clubs: results});
-			}
-		);
+		return clubModel.findAllByUserId(params)
+			.then((results) => {
+				return {clubs: results};
+			});
 	},
 
 	/* params = {user_id} */

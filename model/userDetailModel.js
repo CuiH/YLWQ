@@ -6,15 +6,17 @@ const userDetailSql = require('../sql/userDetailSql');
 const userDetailModel = {
 	/* params = {id} */
 	create: (params, callback) => {
-		query(userDetailSql.insert, [params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+		return new Promise((resolve, reject) => {
+			query(userDetailSql.insert, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

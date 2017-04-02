@@ -46,16 +46,18 @@ const clubModel = {
 	},
 
 	/* params = {user_id} */
-	findAllByUserId: (params, callback) => {
-		query(userClubJoinSql.selectAllByUserId, [params.user_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByUserId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubJoinSql.selectAllByUserId, [params.user_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {id} */
