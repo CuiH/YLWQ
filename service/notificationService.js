@@ -2,38 +2,6 @@ const notificationModel = require('../model/notificationModel');
 const userNotificationMapModel = require('../model/userNotificationMapModel');
 
 
-/* create a new 'notification' */
-/* params = {title, content, type, target_id, target_name} */
-const generateCreateNotificationPromise = (params) => {
-	return new Promise((resolve, reject) => {
-		notificationModel.create(params,
-			(err, results) => {
-				if (err) {
-					return reject(err);
-				}
-
-				resolve(results);
-			}
-		);
-	});
-};
-
-/* create a new 'notification' */
-/* params = {user_id, notification_id} */
-const generateCreateUserNotificationMapPromise = (params) => {
-	return new Promise((resolve, reject) => {
-		userNotificationMapModel.create(params,
-			(err, results) => {
-				if (err) {
-					return reject(err);
-				}
-
-				resolve();
-			}
-		);
-	});
-};
-
 const notificationService = {
 	/* params = {title, content, type, object_id, object_name, subject_id, subject_name, receiver_user_id} */
 	/* results = {notificationId} */

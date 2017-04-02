@@ -24,52 +24,35 @@ applicationRoute.post('/create',
 	clubAuthentication.memberExclusion,
 	applicationAuthentication.uniqueEntry,
 	(req, res, next) => {
-		const params = req.body;
+		let params = req.body;
 		params.applicant_user_id = req.user.id;
-		applicationService.createApplication(params,
-			(err, results) => {
-				if (err) {
-					return next(err);
-				}
 
-				req.applicationId = results.applicationId;
-				console.log("a user created an application (" + results.applicationId + "), id: " + params.applicant_user_id);
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		userService.getAllAdminsByClubId({club_id: req.body.club_id},
-			(err, results) => {
-				if (err) {
-					return next(err);
-				}
+		let applicationId = null;
+		applicationService.createApplication(params)
+			.then((results) => {
+				applicationId = results.applicationId;
 
-				req.admins = results.admins;
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		let params = {
-			title: "群系统消息",
-			content: null,
-			type: value.NOTIFICATION_TYPE_APPLICATION,
-			object_id: req.applicationId,
-			object_name: null,
-			subject_id: null,
-			subject_name: null,
-			receivers: req.admins,
-		};
-		notificationService.sendMultipleNotifications(params,
-			(err, results) => {
-				if (err) {
-					return next(err);
-				}
+				return userService.getAllAdminsByClubId({club_id: req.body.club_id});
+			})
+			.then((results) => {
+				let notificationParams = {
+					title: "群系统消息",
+					content: null,
+					type: value.NOTIFICATION_TYPE_APPLICATION,
+					object_id: applicationId,
+					object_name: null,
+					subject_id: null,
+					subject_name: null,
+					receivers: results.admins,
+				};
 
-				res.json({result: 'success'});
-			}
-		);
+				return notificationService.sendMultipleNotifications(notificationParams);
+			})
+			.then(() => {
+				res.json({result: 'success', data: {applicationId: applicationId}});
+				console.log("a user created an application, and notifications were sent");
+			})
+			.catch(err => next(err));
 	}
 );
 
@@ -79,81 +62,49 @@ applicationRoute.post('/accept',
 	applicationAuthentication.readAccess,
 	applicationAuthentication.unhandledApplication,
 	(req, res, next) => {
-		applicationService.acceptApplication({replier_user_id: req.user.id, application_id: req.body.application_id},
-			(err, results) => {
-				if (err) {
-					// TODO handle error
-					return next(err);
-				}
+		let application = null;
+		applicationService.acceptApplication({replier_user_id: req.user.id, application_id: req.body.application_id})
+			.then((results) => {
+				application = results.application;
 
 				res.json({result: 'success'});
-				console.log("a user accepted an application (" + req.body.application_id + "), id: " + req.user.id);
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		applicationService.getApplicationById({id: req.body.application_id},
-			(err, results) => {
-				if (err) {
-					return console.log(err);
-				}
+				console.log("a user accepted an application.");
 
-				req.application = results.application;
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		let params = {
-			operator_user_id: req.user.id,
-			club_id: req.application.club_id,
-			title: null,
-			content: null,
-			type: value.CLUB_MESSAGE_TYPE_ENROLLMENT,
-			target_id: req.application.applicant_user_id,
-			target_name: req.application.applicant_username
-		};
-		clubMessageService.createClubMessage(params,
-			(err, results) => {
-				if (err) {
-					return console.log(err);
-				}
+				let clubMessageParams = {
+					operator_user_id: req.user.id,
+					club_id: application.club_id,
+					title: null,
+					content: null,
+					type: value.CLUB_MESSAGE_TYPE_ENROLLMENT,
+					target_id: application.applicant_user_id,
+					target_name: application.applicant_username
+				};
 
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		clubService.getClubById({id: req.application.club_id},
-			(err, results) => {
-				if (err) {
-					return console.log(err);
-				}
+				return clubMessageService.createClubMessage(clubMessageParams);
+			})
+			.then(() => {
+				console.log("a club_message was created.");
 
-				req.club = results.club;
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		let params = {
-			title: "群系统消息",
-			content: null,
-			type: value.NOTIFICATION_TYPE_JOIN_CLUB,
-			object_id: req.club.id,
-			object_name: req.club.name,
-			subject_id: null,
-			subject_name: null,
-			receiver_user_id: req.application.applicant_user_id,
-		};
-		notificationService.sendNotification(params,
-			(err, results) => {
-				if (err) {
-					return console.log(err);
-				}
-			}
-		);
+				return clubService.getClubById({id: application.club_id});
+			})
+			.then((results) => {
+				let notificationParams = {
+					title: "群系统消息",
+					content: null,
+					type: value.NOTIFICATION_TYPE_JOIN_CLUB,
+					object_id: results.club.id,
+					object_name: results.club.name,
+					subject_id: null,
+					subject_name: null,
+					receiver_user_id: application.applicant_user_id,
+				};
+
+				return notificationService.sendNotification(notificationParams);
+			})
+			.then(() => {
+				console.log("a notification was sent.");
+			})
+			.catch(err => next(err));
 	}
 );
 
@@ -163,61 +114,36 @@ applicationRoute.post('/reject',
 	applicationAuthentication.readAccess,
 	applicationAuthentication.unhandledApplication,
 	(req, res, next) => {
-		applicationService.rejectApplication({replier_user_id: req.user.id, application_id: req.body.application_id},
-			(err, results) => {
-				if (err) {
-					// TODO handle error
-					return next(err);
-				}
-
+		let application = null;
+		applicationService.rejectApplication({replier_user_id: req.user.id, application_id: req.body.application_id})
+			.then(() => {
 				res.json({result: 'success'});
-				console.log("a user rejected an application (" + req.query.application_id + "), id: " + req.user.id);
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		applicationService.getApplicationById({id: req.body.application_id},
-			(err, results) => {
-				if (err) {
-					return console.log(err);
-				}
+				console.log("a user rejected an application.");
 
-				req.application = results.application;
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		clubService.getClubById({id: req.application.club_id},
-			(err, results) => {
-				if (err) {
-					return console.log(err);
-				}
+				return applicationService.getApplicationById({id: req.body.application_id});
+			})
+			.then((results) => {
+				application = results.application;
 
-				req.club = results.club;
-				next();
-			}
-		);
-	},
-	(req, res, next) => {
-		let params = {
-			title: "群系统消息",
-			content: null,
-			type: value.NOTIFICATION_TYPE_APPLICATION_REJECTION,
-			object_id: req.club.id,
-			object_name: req.club.name,
-			subject_id: null,
-			subject_name: null,
-			receiver_user_id: req.application.applicant_user_id,
-		};
-		notificationService.sendNotification(params,
-			(err, results) => {
-				if (err) {
-					return console.log(err);
-				}
-			}
-		);
+				return clubService.getClubById({id: application.club_id});
+			})
+			.then((results) => {
+				let notificationParams = {
+					title: "群系统消息",
+					content: null,
+					type: value.NOTIFICATION_TYPE_APPLICATION_REJECTION,
+					object_id: results.club.id,
+					object_name: results.club.name,
+					subject_id: null,
+					subject_name: null,
+					receiver_user_id: application.applicant_user_id,
+				};
+				notificationService.sendNotification(notificationParams);
+			})
+			.then(() => {
+				console.log("a notification was sent.");
+			})
+			.catch(err => next(err));
 	}
 );
 
@@ -225,17 +151,12 @@ applicationRoute.get('/:application_id',
 	tokenAuthentication,
 	applicationAuthentication.readAccess,
 	(req, res, next) => {
-		applicationService.getApplicationById({id: req.params.application_id},
-			(err, results) => {
-				if (err) {
-					// TODO handle error
-					return next(err);
-				}
-
+		applicationService.getApplicationById({id: req.params.application_id})
+			.then((results) => {
 				res.json({result: 'success', data: results});
-				console.log("a user get an application (" + req.params.application_id + "), id: " + req.user.id);
-			}
-		);
+				console.log("a user got an application.");
+			})
+			.catch(err => next(err));
 	}
 );
 

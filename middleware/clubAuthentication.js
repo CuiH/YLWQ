@@ -70,37 +70,27 @@ const clubAuthentication = {
 	/* check if the 'club' exists */
 	/* params = {club_id} */
 	clubExistence: (req, res, next) => {
-		clubModel.findOneById({id: req.body.club_id},
-			(err, results) => {
-				if (err) {
-					return next(err);
-				}
-
+		clubModel.findOneById({id: req.body.club_id})
+			.then((results) => {
 				if (results.length == 0) {
 					return next(new Error("no such club."));
 				}
 
 				next();
-			}
-		);
+			}).catch(err => next(err));
 	},
 
 	/* check if the 'user' is not in the 'club' */
 	/* params = {user_id, club_id} */
 	memberExclusion: (req, res, next) => {
-		userClubMapModel.findOneByUserIdAndClubId({user_id: req.user.id, club_id: req.body.club_id},
-			(err, results) => {
-				if (err) {
-					return next(err);
-				}
-
+		userClubMapModel.findOneByUserIdAndClubId({user_id: req.user.id, club_id: req.body.club_id})
+			.then((results) => {
 				if (results.length != 0) {
 					return next(new Error("already in the club."));
 				}
 
 				next();
-			}
-		);
+			}).catch(err => next(err));
 	},
 };
 

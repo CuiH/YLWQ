@@ -53,16 +53,20 @@ const clubModel = {
 	},
 
 	/* params = {id} */
-	increaseMemberNumberByOneById: (params, callback) => {
-		query(clubSql.increaseMemberNumberByOneById, [params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	increaseMemberNumberByOneById: (params) => {
+		console.log(params)
+		return new Promise((resolve, reject) => {
+			query(clubSql.increaseMemberNumberByOneById, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+
 	},
 };
 

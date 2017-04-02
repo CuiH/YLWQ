@@ -92,23 +92,15 @@ const userService = {
 	},
 
 	/* params = {club_id} */
-	/* callback: (err, results = {admins}) */
-	getAllAdminsByClubId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {admins} */
+	getAllAdminsByClubId: (params) => {
 		/*
 		 a) get all admin 'user' by [club_id]
 		 */
-		userClubMapModel.findAllAdminsByClubId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {admins: results});
-			}
-		);
+		return userClubMapModel.findAllAdminsByClubId(params)
+			.then((results) => {
+				return {admins: results};
+			});
 	},
 };
 
