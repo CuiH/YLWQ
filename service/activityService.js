@@ -107,23 +107,15 @@ const activityService = {
 	},
 
 	/* params = {club_id} */
-	/* callback: (err, results = {activities}) */
-	getAllActivitiesByClubId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {activities} */
+	getAllActivitiesByClubId: (params) => {
 		/*
 		 a) get all 'activity' by [club_id]
 		 */
-		activityModel.findAllByClubId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {activities: results});
-			}
-		);
+		return activityModel.findAllByClubId(params)
+			.then((results) => {
+				return {activities: results};
+			});
 	},
 
 	/* params = {id} */

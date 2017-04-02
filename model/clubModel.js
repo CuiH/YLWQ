@@ -6,43 +6,35 @@ const userClubJoinSql = require('../sql/userClubJoinSql');
 
 const clubModel = {
 	/* params = {founder_user_id, name, brief_intro} */
-	create: (params, callback) => {
-		let now = new Date();
-		query(clubSql.insert, [params.founder_user_id, params.name, params.brief_intro, now],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(clubSql.insert, [params.founder_user_id, params.name, params.brief_intro, now],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {id} */
-	findOneById: (params, callback) => {
-		query(userClubJoinSql.selectOneByClubId, [params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
+	findOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubJoinSql.selectOneByClubId, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
 				}
+			);
+		});
 
-				callback(null, results);
-			}
-		);
-	},
-
-	/* params = {name} */
-	findOneByName: (params, callback) => {
-		query(userClubJoinSql.selectOneByClubName, [params.name],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, results);
-			}
-		);
 	},
 
 	/* params = {user_id} */

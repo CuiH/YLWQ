@@ -7,17 +7,19 @@ const value = require('../config/value');
 
 const userClubMapModel = {
 	/* params = {club_id, user_id, role} */
-	create: (params, callback) => {
-		const now = new Date();
-		query(userClubMapSql.insert, [params.club_id, params.user_id, now, params.role],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(userClubMapSql.insert, [params.club_id, params.user_id, now, params.role],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {user_id} */

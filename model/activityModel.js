@@ -51,16 +51,19 @@ const activityModel = {
 	},
 
 	/* params = {club_id} */
-	findAllByClubId: (params, callback) => {
-		query(activitySql.selectAllByClubId, [params.club_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByClubId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activitySql.selectAllByClubId, [params.club_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+
 	},
 
 	/* params = {user_id} */

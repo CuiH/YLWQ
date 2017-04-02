@@ -15,23 +15,15 @@ const clubBulletinService = {
 	},
 
 	/* params = {club_id} */
-	/* callback: (err, results = {clubBulletins}) */
+	/* results = {clubBulletins} */
 	getAllClubBulletinsByClubId: (params, callback) => {
-		// TODO verify params
-
-
 		/*
 		 a) get all 'club_bulletin' by [club_id]
 		 */
-		clubBulletinModel.findAllByClubId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {clubBulletins: results});
-			}
-		);
+		return clubBulletinModel.findAllByClubId(params)
+			.then((results) => {
+				return {clubBulletins: results};
+			});
 	},
 
 	/* params = {club_id} */

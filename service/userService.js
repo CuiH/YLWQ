@@ -26,7 +26,6 @@ const userService = {
 					userDetailModel.create({id: userId}),
 					userAccountModel.create({id: userId, balance: 0})
 				]);
-
 			})
 			.then(() => {
 				return {userId: userId};
@@ -88,23 +87,15 @@ const userService = {
 	},
 
 	/* params = {club_id} */
-	/* callback: (err, results = {members}) */
-	getAllMembersByClubId: (params, callback) => {
-		// TODO verify params
-
-
+	/* results = {members} */
+	getAllMembersByClubId: (params) => {
 		/*
 		 a) get all 'user' by [club_id]
 		 */
-		userModel.findAllByClubId(params,
-			(err, results) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, {members: results});
-			}
-		);
+		return userModel.findAllByClubId(params)
+			.then((results) => {
+				return {members: results};
+			});
 	},
 
 	/* params = {club_id} */

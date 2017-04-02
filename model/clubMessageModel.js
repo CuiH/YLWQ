@@ -5,44 +5,36 @@ const clubMessageSql = require('../sql/clubMessageSql');
 
 const cluMessageModel = {
 	/* params = {operator_user_id, club_id, title, content, type, target_id, target_name} */
-	create: (params, callback) => {
-		const now = new Date();
-		query(clubMessageSql.insert, [params.operator_user_id, params.club_id, params.title,
-				params.content, params.type, now, params.target_id, params.target_name],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(clubMessageSql.insert, [params.operator_user_id, params.club_id, params.title,
+					params.content, params.type, now, params.target_id, params.target_name],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+
 	},
 
 	/* params = {club_id} */
-	findAllByClubId: (params, callback) => {
-		query(clubMessageSql.selectAllByClubId, [params.club_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
+	findLatestThreeByClubId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(clubMessageSql.selectLatestThreeByClubId, [params.club_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
 				}
-
-				callback(null, results);
-			}
-		);
-	},
-
-	/* params = {club_id} */
-	findLatestThreeByClubId: (params, callback) => {
-		query(clubMessageSql.selectLatestThreeByClubId, [params.club_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, results);
-			}
-		);
+			);
+		});
 	}
 };
 
