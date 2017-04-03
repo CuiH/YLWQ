@@ -60,6 +60,20 @@ clubRoute.get('/get_latest_three_club_messages',
 	}
 );
 
+clubRoute.get('/get_all_club_messages',
+	tokenAuthentication,
+	clubAuthentication.memberAccess,
+	(req, res, next) => {
+		const params = {club_id: req.query.club_id};
+		clubMessageService.getAllClubMessagesByClubId(params)
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user got all club messages of a club.");
+			})
+			.catch(err => next(err));
+	}
+);
+
 clubRoute.get('/get_all_members',
 	tokenAuthentication,
 	clubAuthentication.memberAccess,

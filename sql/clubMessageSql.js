@@ -9,7 +9,9 @@ const clubMessage = {
                                'user u ' +
                                'ON ' +
                                'u.id = t.operator_user_id',
-	selectAllByClubId: 'SELECT * FROM club_message WHERE club_id = ?',
+	selectAllByClubId: 'SELECT cm.*, u.username as operator_username ' +
+	                   'FROM club_message cm, user u ' +
+	                   'WHERE cm.club_id = ? AND u.id = cm.operator_user_id',
 };
 
 module.exports = clubMessage;

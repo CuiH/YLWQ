@@ -111,16 +111,18 @@ const userClubMapModel = {
 	},
 
 	/* params = {activity_id} */
-	findAllByActivityId: (params, callback) => {
-		query(userClubMapSql.selectAllByActivityId, [params.activity_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByActivityId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubMapSql.selectAllByActivityId, [params.activity_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

@@ -59,7 +59,7 @@ const generateFindActivityBillParticipantPaymentPromise = (params) => {
 /* params = {activity_id, note, total_cost} */
 const generateCreateActivityBillPromise = (params) => {
 	return new Promise((resolve, reject) => {
-		activityBillModel.create({id: params.activity_id, note: params.note, total_cost: params.total_cost},
+		activityBillModel.create({id: params.activity_id, note: params.note},
 			(err, results) => {
 				if (err) {
 					return reject(err, null);
@@ -122,51 +122,40 @@ const generateUpdateActivityPromise = (params) => {
 
 
 const activityBillService = {
-	/* params = {activity_id, note, activity_bill_items, activity_bill_participant_payments} */
-	/* callback: (err, results = {activityBillId}) */
-	createActivityBill: (params, callback) => {
-		// TODO verify params
-
-
+	/* params = {user_id, activity_id, note, activityBillItems, activityBillParticipantPayments} */
+	/* results = {} */
+	createActivityBill: (params) => {
 		/*
 		 a) create a new 'activity_bill' according to the 'activity' [id]
 		 b) create 'activity_bill_item' and 'activity_bill_participant_payment'
 		 c) update the [activity_bill_status] of the 'activity'
 		 */
-		let totalCost = 0;
-		const items = params.activity_bill_items;
-		for (let i = 0; i < items.length; i++) {
-			totalCost += items[i].cost;
-		}
-
-		generateCreateActivityBillPromise({activity_id: params.activity_id, note: params.note, total_cost: totalCost})
+		return activityBillModel.create({id: params.activity_id, note: params.note, publisher_user_id: params.user_id})
 			.then(() => {
 				let promises = [];
+
+				const items = params.activityBillItems;
 				for (let i = 0; i < items.length; i++) {
 					items[i].activity_bill_id = params.activity_id;
-					promises.push(generateCreateActivityBillItemPromise(items[i]));
+					promises.push(activityBillItemModel.create(items[i]));
 				}
 
-				const payments = params.activity_bill_participant_payments;
+				const payments = params.activityBillParticipantPayments;
 				for (let i = 0; i < payments.length; i++) {
 					payments[i].activity_bill_id = params.activity_id;
-					promises.push(generateCreateActivityBillParticipantPaymentPromise(payments[i]));
+					promises.push(activityBillParticipantPaymentModel.create(payments[i]));
 				}
 
 				return Promise.all(promises);
 			})
 			.then(() => {
-				return generateUpdateActivityPromise({
-					activity_id: params.activity_id,
+				return activityModel.updateActivityBillStatusById({
+					id: params.activity_id,
 					activity_bill_status: value.ACTIVITY_BILL_STATUS_PUBLISHING
 				});
-
 			})
 			.then(() => {
-				callback(null, {activityBillId: params.activity_id});
-			})
-			.catch((err) => {
-				callback(err, null);
+				return {};
 			});
 	},
 

@@ -36,35 +36,26 @@ const clubAuthentication = {
 		}).catch(err => next(err));
 	},
 
-	/* check if the payer in all of the 'activity_bill_item' is a member of the 'club' that holds the 'activity'*/
-	/* params = {activity_bill_item, activity_id} */
-	payerAndParticipantMemberAccess: (req, res, next) => {
-		userClubMapModel.findAllByActivityId({activity_id: req.body.activity_id}, (err, results) => {
-			if (err) {
-				return next(err);
-			}
-
-			let memberIds = [];
-			for (let i = 0; i < results.length; i++) {
-				memberIds.push(results[i].user_id);
-			}
-
-			const items = req.body.activity_bill_items;
-			for (let i = 0; i < items.length; i++) {
-				if (!memberIds.includes(items[i].payer_user_id)) {
-					return next(new Error("invalid payer."));
+	/* check if the payer in all of the 'activity_bill_item' is a member of the 'club' that holds the 'activity' */
+	/* params = {activityBillItems, activity_id} */
+	itemPayerMemberAccess: (req, res, next) => {
+		userClubMapModel.findAllByActivityId({activity_id: req.body.activity_id})
+			.then((results) => {
+				let memberIds = [];
+				for (let i = 0; i < results.length; i++) {
+					memberIds.push(results[i].user_id);
 				}
-			}
 
-			const payments = req.body.activity_bill_participant_payments;
-			for (let i = 0; i < payments.length; i++) {
-				if (!memberIds.includes(payments[i].participant_user_id)) {
-					return next(new Error("invalid participant."));
+				const items = req.body.activityBillItems;
+				for (let i = 0; i < items.length; i++) {
+					if (!memberIds.includes(items[i].payer_user_id)) {
+						return next(new Error("invalid payer."));
+					}
 				}
-			}
 
-			next();
-		});
+				next();
+			})
+			.catch(err => next(err));
 	},
 
 	/* check if the 'club' exists */

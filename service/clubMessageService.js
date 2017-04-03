@@ -16,6 +16,18 @@ const clubMessageService = {
 
 	/* params = {club_id} */
 	/* results = {clubMessages} */
+	getAllClubMessagesByClubId: (params) => {
+		/*
+		 a) get all 'club_message' by [club_id]
+		 */
+		return clubMessageModel.findAllByClubId(params)
+			.then((results) => {
+				return {clubMessages: results};
+			})
+	},
+
+	/* params = {club_id} */
+	/* results = {clubMessages} */
 	getLatestThreeClubMessagesByClubId: (params) => {
 		/*
 		 a) get latest three 'club_message' by [club_id]

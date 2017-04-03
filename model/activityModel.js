@@ -105,16 +105,18 @@ const activityModel = {
 	},
 
 	/* params = {id, activity_bill_status} */
-	updateActivityBillStatusById: (params, callback) => {
-		query(activitySql.updateActivityBillStatusById, [params.activity_bill_status, params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	updateActivityBillStatusById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activitySql.updateActivityBillStatusById, [params.activity_bill_status, params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 };
 

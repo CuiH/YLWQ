@@ -50,7 +50,21 @@ const userModel = {
 				}
 			);
 		});
+	},
 
+	/* params = {id} */
+	findOneById2: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userSql.selectOneById2, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {id} */

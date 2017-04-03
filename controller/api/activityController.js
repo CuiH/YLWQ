@@ -40,7 +40,7 @@ activityRoute.post('/create',
 					content: null,
 					type: value.CLUB_MESSAGE_TYPE_ACTIVITY,
 					target_id: results.activityId,
-					target_name: null
+					target_name: req.body.name
 				};
 
 				return clubMessageService.createClubMessage(clubMessageParams);
@@ -61,7 +61,7 @@ activityRoute.post('/create',
 					content: null,
 					type: value.NOTIFICATION_TYPE_ACTIVITY_CREATION,
 					object_id: activityId,
-					object_name: null,
+					object_name: req.body.name,
 					subject_id: club.id,
 					subject_name: club.name,
 					receivers: results.members,
@@ -69,9 +69,7 @@ activityRoute.post('/create',
 
 				return notificationService.sendMultipleNotifications(notificationParams);
 			})
-			.then(() => {
-				console.log("notifications were sent.");
-			})
+			.then(() => console.log("notifications were sent."))
 			.catch(err => next(err));
 	}
 );

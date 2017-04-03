@@ -35,6 +35,21 @@ const cluMessageModel = {
 				}
 			);
 		});
+	},
+
+	/* params = {club_id} */
+	findAllByClubId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(clubMessageSql.selectAllByClubId, [params.club_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

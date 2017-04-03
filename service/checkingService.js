@@ -1,4 +1,5 @@
 const userClubMapModel = require('../model/userClubMapModel');
+const activityModel = require('../model/activityModel');
 const applicationModel = require('../model/applicationModel');
 const userActivityMapModel = require('../model/userActivityMapModel');
 
@@ -57,11 +58,31 @@ const checkingService = {
 		);
 	},
 
+	/* params = {user_id, activity_id} */
+	/* results = {result}) */
+	checkActivitySponsor: (params) => {
+		/*
+		 a) check whether the user is the sponsor of the activity
+		 */
+		return activityModel.findOneById({id: params.activity_id})
+			.then((results) => {
+				if (results.length == 0) {
+					return {result: false};
+				}
+
+				if (results[0].sponsor_user_id == params.user_id) {
+					return {result: true};
+				}
+
+				return {result: false};
+			});
+	},
+
 	/* params = {user_id, club_id} */
 	/* results = {result}) */
 	checkApplicationUnread: (params) => {
 		/*
-		 a) check whether the has sent an unread 'application' to the 'club'
+		 a) check whether the user has sent an unread 'application' to the 'club'
 		 */
 		return applicationModel.findAllByApplicantUserIdAndClubIdAndStatus({
 			applicant_user_id: params.user_id,

@@ -21,29 +21,18 @@ const userActivityMapModel = {
 	},
 
 	/* params = {activity_id} */
-	findAllByActivityId: (params, callback) => {
-		query(userActivityMapSql.selectAllByActivityId, [params.activity_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
+	findAllByActivityId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userActivityMapSql.selectAllByActivityId, [params.activity_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
 				}
-
-				callback(null, results);
-			}
-		);
-	},
-
-	/* params = {user_id} */
-	findAllByUserId: (params, callback) => {
-		query(userActivityMapSql.selectAllByUserId, [params.user_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, results);
-			}
-		);
+			);
+		});
 	},
 
 	/* params = {user_id, activity_id} */

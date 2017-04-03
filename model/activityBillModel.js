@@ -6,32 +6,36 @@ const value = require('../config/value');
 
 
 const activityBillModel = {
-	/* params = {id, note, total_cost} */
-	create: (params, callback) => {
-		let now = new Date();
-		query(activityBillSql.insert, [params.id, params.note, params.total_cost, now, value.ACTIVITY_BILL_STATUS_PUBLISHING, now],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	/* params = {id, note, publisher_user_id} */
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(activityBillSql.insert, [params.id, params.note, now, value.ACTIVITY_BILL_STATUS_PUBLISHING, params.publisher_user_id, now],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {id} */
-	findOneById: (params, callback) => {
-		let now = new Date();
-		query(activityBillSql.selectOneById, [params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			let now = new Date();
+			query(activityBillSql.selectOneById, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {id, total_cost_change} */

@@ -87,4 +87,30 @@ userRoute.get('/get_all_notifications',
 	}
 );
 
+userRoute.post('/update',
+	tokenAuthentication,
+	bodyParser.urlencoded({extended: false}),
+	(req, res, next) => {
+		let params = req.body;
+		params.id = req.user.id;
+		userService.updateUserDetailById(params)
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user updated the user_detail.");
+			})
+			.catch(err => next(err));
+	}
+);
+
+userRoute.get('/:user_id',
+	(req, res, next) => {
+		userService.getUserDetailById({id: req.params.user_id})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user was queried.");
+			})
+			.catch(err => next(err));
+	}
+);
+
 module.exports = userRoute;

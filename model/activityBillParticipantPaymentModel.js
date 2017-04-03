@@ -5,17 +5,19 @@ const activityBillParticipantPaymentSql = require('../sql/activityBillParticipan
 
 const activityBillParticipantPaymentModel = {
 	/* params = {activity_bill_id, participant_user_id, amount} */
-	create: (params, callback) => {
-		query(activityBillParticipantPaymentSql.insert, [params.activity_bill_id,
-				params.participant_user_id, params.amount],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillParticipantPaymentSql.insert, [params.activity_bill_id,
+					params.participant_user_id, params.amount],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {activity_bill_id} */

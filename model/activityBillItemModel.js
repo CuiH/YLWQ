@@ -5,18 +5,19 @@ const activityBillItemSql = require('../sql/activityBillItemSql');
 
 const activityBillItemModel = {
 	/* params = {activity_bill_id, description, cost, note, payer_user_id} */
-	create: (params, callback) => {
-		let now = new Date();
-		query(activityBillItemSql.insert, [params.activity_bill_id, params.description,
-				params.cost, params.note, params.payer_user_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	create: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillItemSql.insert, [params.activity_bill_id, params.description,
+					params.cost, params.note, params.payer_user_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	},
 
 	/* params = {activity_bill_id} */
