@@ -20,6 +20,7 @@ const activityBillRoute = express.Router();
 activityBillRoute.post('/create',
 	tokenAuthentication,
 	bodyParser.json(),
+	activityAuthentication.finishedActivity,
 	activityBillAuthentication.createAccess,
 	activityBillAuthentication.unpublishedActivityBill,
 	clubAuthentication.itemPayerMemberAccess,
@@ -34,7 +35,7 @@ activityBillRoute.post('/create',
 				res.json({result: 'success', data: results});
 				console.log("a user published an activity_bill");
 
-				return activityService.getActivityById({id: req.body.activity_id});
+				return activityService.getActivityById({id: req.body.id});
 			})
 			.then((results) => {
 				activity = results.activity;
@@ -53,7 +54,7 @@ activityBillRoute.post('/create',
 			})
 			.then(() => {
 				console.log("a club_message was created.");
-				return userService.getAllParticipantsByActivityId({activity_id: req.body.activity_id});
+				return userService.getAllParticipantsByActivityId({activity_id: req.body.id});
 			})
 			.then((results) => {
 				let notificationParams = {
@@ -77,21 +78,16 @@ activityBillRoute.post('/create',
 
 activityBillRoute.get('/:activity_bill_id',
 	tokenAuthentication,
-	activityBillAuthentication.readAccess,
 	activityBillAuthentication.publishedActivityBill,
+	activityBillAuthentication.readAccess,
 	(req, res, next) => {
-		const params = {id: req.params.activity_bill_id};
-		activityBillService.getActivityBillById(params,
-			(err, results) => {
-				if (err) {
-					// TODO handle error
-					return next(err);
-				}
-
+		const params = {activity_bill_id: req.params.activity_bill_id};
+		activityBillService.getActivityBillById(params)
+			.then((results) => {
 				res.json({result: 'success', data: results});
-				console.log("a user got a an activity_bill (" + req.params.activity_bill_id + ") , id: " + req.user.id);
-			}
-		);
+				console.log("a user got a an activity_bill");
+			})
+			.catch(err => next(err));
 	}
 );
 

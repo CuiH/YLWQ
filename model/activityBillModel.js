@@ -9,8 +9,7 @@ const activityBillModel = {
 	/* params = {id, note, publisher_user_id} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(activityBillSql.insert, [params.id, params.note, now, value.ACTIVITY_BILL_STATUS_PUBLISHING, params.publisher_user_id, now],
+			query(activityBillSql.insert, [params.id, params.note, value.ACTIVITY_BILL_STATUS_PUBLISHING, params.publisher_user_id],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);
@@ -25,7 +24,6 @@ const activityBillModel = {
 	/* params = {id} */
 	findOneById: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
 			query(activityBillSql.selectOneById, [params.id],
 				(err, results, fields) => {
 					if (err) {

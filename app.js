@@ -9,6 +9,7 @@ const applicationController = require('./controller/api/applicationController');
 const notificationController = require('./controller/api/notificationController');
 const activityBillController = require('./controller/api/activityBillController');
 const checkingController = require('./controller/api/checkingController');
+const newsController = require('./controller/api/newsController');
 
 
 let app = express();
@@ -16,7 +17,7 @@ let app = express();
 app.all('*', (req, res, next) => {
 	res.header('Last-Modified', (new Date()).toUTCString());
 	res.header("Access-Control-Allow-Origin", "*");
-	res.header("Access-Control-Allow-Headers", "x-access-token");
+	res.header("Access-Control-Allow-Headers", "x-access-token, Content-Type");
 	res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
 	next();
 });
@@ -30,6 +31,7 @@ app.use('/api/application', applicationController);
 app.use('/api/notification', notificationController);
 app.use('/api/activity_bill', activityBillController);
 app.use('/api/checking', checkingController);
+app.use('/api/news', newsController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

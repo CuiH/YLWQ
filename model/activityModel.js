@@ -10,10 +10,10 @@ const activityModel = {
 	/* params = {sponsor_user_id, club_id, name, start_time, end_time, location, brief_intro, note} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
+			console.log(params)
 			query(activitySql.insert, [params.sponsor_user_id, params.club_id,
 					params.name, params.start_time, params.end_time, params.location,
-					params.brief_intro, params.note, now, value.ACTIVITY_BILL_STATUS_UNPUBLISHED],
+					params.brief_intro, params.note, value.ACTIVITY_BILL_STATUS_UNPUBLISHED],
 				(err, results, fields) => {
 					if (err) {
 						return reject(null);
@@ -108,6 +108,22 @@ const activityModel = {
 	updateActivityBillStatusById: (params) => {
 		return new Promise((resolve, reject) => {
 			query(activitySql.updateActivityBillStatusById, [params.activity_bill_status, params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
+	},
+
+	/* params = {id, start_time, end_time, location, brief_intro, note} */
+	updateOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activitySql.updateOneById, [params.start_time, params.end_time, params.location,
+					params.brief_intro, params.note, params.id],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);

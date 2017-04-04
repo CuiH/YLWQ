@@ -79,6 +79,18 @@ const activityService = {
 				return {activity: results[0]};
 			});
 	},
+
+	/* params = {id, start_time, end_time, location, brief_intro, note} */
+	/* results = {} */
+	updateActivityById: (params) => {
+		/*
+		 a) update a 'activity' by id
+		 */
+		return activityModel.updateOneById(params)
+			.then((results) => {
+				return {};
+			});
+	},
 };
 
 module.exports = activityService;

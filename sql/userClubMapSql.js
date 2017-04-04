@@ -1,5 +1,5 @@
 const userClubMap = {
-	insert: 'INSERT INTO user_club_map (club_id, user_id, join_time, role) VALUES (?, ?, ?, ?)',
+	insert: 'INSERT INTO user_club_map (club_id, user_id, join_time, role) VALUES (?, ?, NOW(), ?)',
 	selectAllByUserId: 'SELECT * FROM user_club_map WHERE user_id = ?',
 	selectOneByUserIdAndClubId: 'SELECT * FROM user_club_map WHERE user_id = ? AND club_id = ?',
 	selectOneByUserIdAndActivityId: 'SELECT user_club_map.* FROM activity, user_club_map ' +

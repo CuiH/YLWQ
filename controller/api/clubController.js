@@ -113,6 +113,20 @@ clubRoute.get('/get_all_club_bulletins',
 	}
 );
 
+clubRoute.post('/update',
+	tokenAuthentication,
+	bodyParser.urlencoded({extended: false}),
+	clubAuthentication.adminAccess,
+	(req, res, next) => {
+		clubService.updateClubById(req.body)
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user updated a club.");
+			})
+			.catch(err => next(err));
+	}
+);
+
 clubRoute.get('/:club_id',
 	(req, res, next) => {
 		clubService.getClubById({id: req.params.club_id})

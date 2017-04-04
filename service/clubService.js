@@ -40,6 +40,18 @@ const clubService = {
 			});
 	},
 
+	/* params = {id, brief_intro} */
+	/* results = {} */
+	updateClubById: (params) => {
+		/*
+		 a) update a 'club' by [id]
+		 */
+		return clubModel.updateOneById(params)
+			.then((results) => {
+				return {};
+			});
+	},
+
 	/* params = {id} */
 	/* results = {club} */
 	getClubById: (params) => {

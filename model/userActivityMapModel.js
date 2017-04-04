@@ -7,8 +7,7 @@ const userActivityMapModel = {
 	/* params = {activity_id, user_id} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(userActivityMapSql.insert, [params.user_id, params.activity_id, now],
+			query(userActivityMapSql.insert, [params.user_id, params.activity_id],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);

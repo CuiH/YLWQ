@@ -10,7 +10,7 @@ const clubAuthentication = {
 	adminAccess: (req, res, next) => {
 		userClubMapModel.findOneByUserIdAndClubId({
 			user_id: req.user.id,
-			club_id: req.body.club_id
+			club_id: req.body.club_id || req.body.id
 		}).then((results) => {
 			if (results.length == 0 || ![value.USER_CLUB_ROLE_ADMIN, value.USER_CLUB_ROLE_FOUNDER]
 					.includes(results[0].role)) {
@@ -39,7 +39,7 @@ const clubAuthentication = {
 	/* check if the payer in all of the 'activity_bill_item' is a member of the 'club' that holds the 'activity' */
 	/* params = {activityBillItems, activity_id} */
 	itemPayerMemberAccess: (req, res, next) => {
-		userClubMapModel.findAllByActivityId({activity_id: req.body.activity_id})
+		userClubMapModel.findAllByActivityId({activity_id: req.body.id})
 			.then((results) => {
 				let memberIds = [];
 				for (let i = 0; i < results.length; i++) {

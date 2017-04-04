@@ -25,26 +25,20 @@ const activityAuthentication = {
 	/* check if the 'user' is the sponsor of the 'activity', and if the 'activity' exists */
 	/* params = {user_id, activity_bill_id} */
 	sponsorAccess: (req, res, next) => {
-		activityModel.findOneById({
-				id: req.body.activity_bill_id || req.body.activity_id
-			}, (err, results) => {
-				if (err) {
-					return next(err);
-				}
-
+		activityModel.findOneById({id: req.body.id})
+			.then((results) => {
 				if (results.length == 0 || results[0].sponsor_user_id != req.user.id) {
 					return next(new Error('no access.'));
 				}
 
 				next();
-			}
-		);
+			}).catch(err => next(err));
 	},
 
 	/* check if the user in all of the 'activity_bill_participant_payment' is a participant of the 'activity' */
 	/* params = {activityBillParticipantPayments, activity_id} */
 	participantPaymentParticipantAccess: (req, res, next) => {
-		userActivityMapModel.findAllByActivityId({activity_id: req.body.activity_id})
+		userActivityMapModel.findAllByActivityId({activity_id: req.body.id})
 			.then((results) => {
 				let participantIds = [];
 				for (let i = 0; i < results.length; i++) {
@@ -56,6 +50,46 @@ const activityAuthentication = {
 					if (!participantIds.includes(items[i].participant_user_id)) {
 						return next(new Error("invalid participant payment participant."));
 					}
+				}
+
+				next();
+			})
+			.catch(err => next(err));
+	},
+
+	/* check if the 'activity' is finished, and if the 'activity' exists */
+	/* params = {activityBillParticipantPayments, activity_id} */
+	finishedActivity: (req, res, next) => {
+		activityModel.findOneById({id: req.body.id})
+			.then((results) => {
+				if (results.length == 0) {
+					return next(new Error('no such activity.'));
+				}
+
+				const endDate = new Date(Date.parse(results[0].end_time));
+				const now = new Date();
+				if (endDate > now) {
+					return next(new Error('has not finished.'));
+				}
+
+				next();
+			})
+			.catch(err => next(err));
+	},
+
+	/* check if the 'activity' is not finished, and if the 'activity' exists */
+	/* params = {activityBillParticipantPayments, activity_id} */
+	unfinishedActivity: (req, res, next) => {
+		activityModel.findOneById({id: req.body.activity_id || req.body.id})
+			.then((results) => {
+				if (results.length == 0) {
+					return next(new Error('no such activity.'));
+				}
+
+				const endDate = new Date(Date.parse(results[0].end_time));
+				const now = new Date();
+				if (endDate < now) {
+					return next(new Error('has finished.'));
 				}
 
 				next();

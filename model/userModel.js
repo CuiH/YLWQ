@@ -9,8 +9,7 @@ const userModel = {
 	/* params = {username, password} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(userSql.insert, [params.username, params.password, now, now],
+			query(userSql.insert, [params.username, params.password],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);
@@ -70,8 +69,7 @@ const userModel = {
 	/* params = {id} */
 	updateLastLoginTimeById: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(userSql.updateLastLoginTimeById, [now, params.id],
+			query(userSql.updateLastLoginTimeById, [params.id],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);

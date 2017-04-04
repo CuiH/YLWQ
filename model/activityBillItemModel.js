@@ -21,16 +21,18 @@ const activityBillItemModel = {
 	},
 
 	/* params = {activity_bill_id} */
-	findAllByActivityBillId: (params, callback) => {
-		query(activityBillItemSql.selectAllByActivityBillId, [params.activity_bill_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	findAllByActivityBillId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillItemSql.selectAllByActivityBillId, [params.activity_bill_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

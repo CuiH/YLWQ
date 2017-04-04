@@ -8,8 +8,7 @@ const clubModel = {
 	/* params = {founder_user_id, name, brief_intro} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(clubSql.insert, [params.founder_user_id, params.name, params.brief_intro, now],
+			query(clubSql.insert, [params.founder_user_id, params.name, params.brief_intro],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);
@@ -52,9 +51,23 @@ const clubModel = {
 		});
 	},
 
+	/* params = {id, brief_intro} */
+	updateOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(clubSql.updateOneById, [params.brief_intro, params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
+	},
+
 	/* params = {id} */
 	increaseMemberNumberByOneById: (params) => {
-		console.log(params)
 		return new Promise((resolve, reject) => {
 			query(clubSql.increaseMemberNumberByOneById, [params.id],
 				(err, results, fields) => {

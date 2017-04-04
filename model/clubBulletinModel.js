@@ -7,8 +7,7 @@ const clubBulletinModel = {
 	/* params = {publisher_user_id, title, content, club_id} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(clubBulletinSql.insert, [params.publisher_user_id, params.title, params.content, params.club_id, now],
+			query(clubBulletinSql.insert, [params.publisher_user_id, params.title, params.content, params.club_id],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);

@@ -22,8 +22,7 @@ const userNotificationMapModel = {
 	/* params = {user_id, notification_id} */
 	updateIsReadByUserIdAndNotificationId: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(userNotificationMapSql.updateIsReadByUserIdAndNotificationId, [now, params.user_id, params.notification_id],
+			query(userNotificationMapSql.updateIsReadByUserIdAndNotificationId, [params.user_id, params.notification_id],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);

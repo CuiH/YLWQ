@@ -7,8 +7,7 @@ const notificationModel = {
 	/* params = {title, content, type, object_id, object_name, subject_id, subject_name} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(notificationSql.insert, [params.title, params.content, now, params.type,
+			query(notificationSql.insert, [params.title, params.content, params.type,
 					params.object_id, params.object_name, params.subject_id, params.subject_name],
 				(err, results, fields) => {
 					if (err) {

@@ -3,7 +3,8 @@ const mysql = {
 	user: 'root',
 	password: 'cuihao',
 	database:'ylwq',
-	port: 3306
+	port: 3306,
+	timezone: +800
 };
 
 module.exports = mysql;

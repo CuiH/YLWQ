@@ -122,7 +122,7 @@ const userService = {
 					return {user: null};
 				}
 
-				user.user_detail = results[0];
+				user.userDetail = results[0];
 
 				return {user: user};
 			});

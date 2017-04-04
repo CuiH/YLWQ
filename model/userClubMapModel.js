@@ -9,8 +9,7 @@ const userClubMapModel = {
 	/* params = {club_id, user_id, role} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			let now = new Date();
-			query(userClubMapSql.insert, [params.club_id, params.user_id, now, params.role],
+			query(userClubMapSql.insert, [params.club_id, params.user_id, params.role],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);
@@ -20,19 +19,6 @@ const userClubMapModel = {
 				}
 			);
 		});
-	},
-
-	/* params = {user_id} */
-	findAllByUserId: (params, callback) => {
-		query(userClubMapSql.selectAllByUserId, [params.user_id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
-
-				callback(null, results);
-			}
-		);
 	},
 
 	/* params = {user_id, club_id} */
