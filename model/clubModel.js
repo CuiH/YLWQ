@@ -79,8 +79,23 @@ const clubModel = {
 				}
 			);
 		});
-
 	},
+
+	/* params = {} */
+	findHottestThree: (params) => {
+		return new Promise((resolve, reject) => {
+			query(clubSql.selectHottestThree, [],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
+	},
+
 };
 
 module.exports = clubModel;

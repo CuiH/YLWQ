@@ -8,12 +8,15 @@ const value = require('../config/value');
 
 
 const activityBillAuthentication = {
-	/* check if the 'user' is a participant or the sponsor of the 'activity', or a member of the 'club' that holds the 'activity' */
+	/* check if the 'user' is a participant or the sponsor of the 'activity', or a member of the 'club' that holds the 'activity', and if the 'activity' exists */
 	/* params = {user_id, activity_bill_id} */
 	readAccess: (req, res, next) => {
 		activityModel.findOneById({
 			id: req.params.activity_bill_id || req.params.activity_id
 		}).then((results) => {
+			if (results.length == 0) {
+				return Promise.reject(new Error('no such activity'));
+			}
 			if (results[0].sponsor_user_id == req.user.id) {
 				return Promise.reject(1);
 			}

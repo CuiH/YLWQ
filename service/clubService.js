@@ -64,6 +64,18 @@ const clubService = {
 			});
 	},
 
+	/* params = {} */
+	/* results = {clubs} */
+	getHottestThreeClubs: (params) => {
+		/*
+		 a) get three hottest 'club'
+		 */
+		return clubModel.findHottestThree(params)
+			.then((results) => {
+				return {clubs: results};
+			});
+	},
+
 };
 
 module.exports = clubService;

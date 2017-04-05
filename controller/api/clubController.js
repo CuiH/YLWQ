@@ -127,6 +127,17 @@ clubRoute.post('/update',
 	}
 );
 
+clubRoute.get('/get_hottest_three',
+	(req, res, next) => {
+		clubService.getHottestThreeClubs()
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user got three hottest clubs.");
+			})
+			.catch(err => next(err));
+	}
+);
+
 clubRoute.get('/:club_id',
 	(req, res, next) => {
 		clubService.getClubById({id: req.params.club_id})
