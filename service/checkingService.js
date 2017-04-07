@@ -1,7 +1,9 @@
 const userClubMapModel = require('../model/userClubMapModel');
 const activityModel = require('../model/activityModel');
 const applicationModel = require('../model/applicationModel');
+const activityBillModel = require('../model/activityBillModel');
 const userActivityMapModel = require('../model/userActivityMapModel');
+const challengeModel = require('../model/challengeModel');
 
 const value = require('../config/value');
 
@@ -95,6 +97,54 @@ const checkingService = {
 
 			return {result: true};
 		});
+	},
+
+	/* params = {user_id, activity_bill_id} */
+	/* results = {result}) */
+	checkActivityBillCreator: (params) => {
+		/*
+		 a) check if the user is the creator of the 'activity_bill', and if the 'activity_bill' exists.
+		 */
+		return activityBillModel.findOneById({id: params.activity_bill_id})
+			.then((results) => {
+				if (results.length == 0 || results[0].publisher_user_id != params.user_id) {
+					return {result: false};
+				}
+
+			return {result: true};
+		});
+	},
+
+	/* params = {activity_bill_id} */
+	/* results = {result}) */
+	checkActivityBillUnfinished: (params) => {
+		/*
+		 a) check if the [status] of the 'activity_bill' is not finished, and if the 'activity_bill' exists.
+		 */
+		return activityBillModel.findOneById({id: params.activity_bill_id})
+			.then((results) => {
+				if (results.length == 0 || results[0].status == value.ACTIVITY_BILL_STATUS_FINISHED) {
+					return {result: false};
+				}
+
+				return {result: true};
+			});
+	},
+
+	/* params = {user_id, activity_bill_id} */
+	/* results = {result}) */
+	checkChallenge: (params) => {
+		/*
+		 a) check if the 'user' has created a 'challenge' to the 'activity_bill'
+		 */
+		return challengeModel.findOneByUserIdAndActivityBillId(params)
+			.then((results) => {
+				if (results.length == 0) {
+					return {result: false};
+				}
+
+				return {result: true};
+			});
 	},
 };
 

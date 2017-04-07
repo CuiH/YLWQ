@@ -13,6 +13,7 @@ const userClubMap = {
 	                                    'WHERE ucm.club_id = cb.club_id AND ucm.user_id = ? AND cb.id = ?',
 	selectAllByActivityId: 'SELECT ucm.* FROM user_club_map ucm, activity a ' +
 	                       'WHERE ucm.club_id = a.club_id AND a.id = ?',
+	deleteOneByUserIdAndClubId: 'DELETE FROM user_club_map WHERE user_id = ? AND club_id = ?',
 };
 
 module.exports = userClubMap;

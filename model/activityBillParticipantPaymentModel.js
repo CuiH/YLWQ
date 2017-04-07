@@ -33,6 +33,21 @@ const activityBillParticipantPaymentModel = {
 				}
 			);
 		});
+	},
+
+	/* params = {id, amount} */
+	updateOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillParticipantPaymentSql.updateOneById, [params.amount, params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

@@ -9,10 +9,25 @@ const value = require('../config/value');
 const activityAuthentication = {
 	/* check if the 'user' is a member of the 'club' that holds the 'activity', and if the 'activity' exists */
 	/* params = {user_id, activity_id} */
-	readAccess: (req, res, next) => {
+	attendAccess: (req, res, next) => {
 		userClubMapModel.findOneByUserIdAndActivityId({
 			user_id: req.user.id,
 			activity_id: req.body ? req.body.activity_id : (req.query.activity_id || req.params.activity_id)
+		}).then((results) => {
+			if (results.length == 0) {
+				return next(new Error('no access.'));
+			}
+
+			next();
+		}).catch(err => next(err));
+	},
+
+	/* check if the 'user' is a participant of the 'activity', and if the 'activity' exists */
+	/* params = {user_id, activity_id} */
+	participantAccess: (req, res, next) => {
+		userActivityMapModel.findOneByUserIdAndActivityId({
+			user_id: req.user.id,
+			activity_id: req.body ? (req.body.activity_id || req.body.activity_bill_id) : (req.query.activity_id || req.params.activity_id)
 		}).then((results) => {
 			if (results.length == 0) {
 				return next(new Error('no access.'));

@@ -47,6 +47,21 @@ const userActivityMapModel = {
 				}
 			);
 		});
+	},
+
+	/* params = {user_id, activity_id} */
+	deleteOneByUserIdAndActivityId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userActivityMapSql.deleteOneByUserIdAndActivityId, [params.user_id, params.activity_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
 
 	}
 };

@@ -6,6 +6,8 @@ const userService = require('../../service/userService');
 const clubService = require('../../service/clubService');
 const activityService = require('../../service/activityService');
 const notificationService = require('../../service/notificationService');
+const userDetailService = require('../../service/userDetailService');
+const userPaymentService = require('../../service/userPaymentService');
 
 const tokenAuthentication = require('../../middleware/tokenAuthentication');
 
@@ -78,10 +80,22 @@ userRoute.get('/get_all_clubs',
 userRoute.get('/get_all_notifications',
 	tokenAuthentication,
 	(req, res, next) => {
-		notificationService.getAllNotificationsByUserId({user_id: req.user.id})
+		notificationService.getAllNotificationsByUserId({user_id: req.user.id, page: req.query.page})
 			.then((results) => {
 				res.json({result: 'success', data: results});
 				console.log("a user got all notifications.");
+			})
+			.catch(err => next(err));
+	}
+);
+
+userRoute.get('/get_all_user_payments',
+	tokenAuthentication,
+	(req, res, next) => {
+		userPaymentService.getAllUserPaymentsByUserId({user_id: req.user.id})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user got all user_payment.");
 			})
 			.catch(err => next(err));
 	}
@@ -93,7 +107,7 @@ userRoute.post('/update',
 	(req, res, next) => {
 		let params = req.body;
 		params.id = req.user.id;
-		userService.updateUserDetailById(params)
+		userDetailService.updateUserDetailById(params)
 			.then((results) => {
 				res.json({result: 'success', data: results});
 				console.log("a user updated the user_detail.");
@@ -104,7 +118,7 @@ userRoute.post('/update',
 
 userRoute.get('/:user_id',
 	(req, res, next) => {
-		userService.getUserDetailById({id: req.params.user_id})
+		userDetailService.getUserDetailById({id: req.params.user_id})
 			.then((results) => {
 				res.json({result: 'success', data: results});
 				console.log("a user was queried.");

@@ -64,7 +64,7 @@ const notificationService = {
 		});
 	},
 
-	/* params = {user_id} */
+	/* params = {user_id, page} */
 	/* results = {notifications} */
 	getAllNotificationsByUserId: (params) => {
 		/*

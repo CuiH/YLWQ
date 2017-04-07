@@ -6,10 +6,10 @@ const value = require('../config/value');
 
 
 const activityBillModel = {
-	/* params = {id, note, publisher_user_id} */
+	/* params = {id, publisher_user_id} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			query(activityBillSql.insert, [params.id, params.note, value.ACTIVITY_BILL_STATUS_PUBLISHING, params.publisher_user_id],
+			query(activityBillSql.insert, [params.id, value.ACTIVITY_BILL_STATUS_PUBLISHING, params.publisher_user_id],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);
@@ -36,18 +36,34 @@ const activityBillModel = {
 		});
 	},
 
-	/* params = {id, total_cost_change} */
-	updateTotalCostAndLastModifyTimeById: (params, callback) => {
-		let now = new Date();
-		query(activityBillSql.updateLastModifyTimeById, [params.total_cost_change, now, params.id],
-			(err, results, fields) => {
-				if (err) {
-					return callback(err, null);
-				}
+	/* params = {id} */
+	updateLastModifyTimeById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillSql.updateLastModifyTimeById, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
 
-				callback(null, results);
-			}
-		);
+					resolve(results);
+				}
+			);
+		});
+	},
+
+	/* params = {id, status} */
+	updateStatusById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillSql.updateStatusById, [params.status, params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
 	},
 };
 

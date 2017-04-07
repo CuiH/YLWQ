@@ -13,7 +13,7 @@ const notificationAuthentication = {
 			notification_id: req.body.notification_id
 		}).then((results) => {
 			if (results.length == 0) {
-				return next(new Error('no saccess.'));
+				return next(new Error('no access.'));
 			}
 
 			if (results[0].is_read == 1) {

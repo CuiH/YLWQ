@@ -21,6 +21,21 @@ const clubAuthentication = {
 		}).catch(err => next(err));
 	},
 
+	/* check if the 'user' is not the founder of the 'club' */
+	/* params = {user_id, club_id} */
+	notFounder: (req, res, next) => {
+		userClubMapModel.findOneByUserIdAndClubId({
+			user_id: req.user.id,
+			club_id: req.body.club_id || req.body.id
+		}).then((results) => {
+			if (results[0].role == value.USER_CLUB_ROLE_FOUNDER) {
+				return next(new Error("cannot do this."));
+			}
+
+			next();
+		}).catch(err => next(err));
+	},
+
 	/* check if the 'user' is a member of the 'club', and if the 'club' exists */
 	/* params = {user_id, club_id} */
 	memberAccess: (req, res, next) => {

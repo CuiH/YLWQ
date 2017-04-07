@@ -32,6 +32,18 @@ const activityService = {
 			});
 	},
 
+	/* params = {user_id, activity_id} */
+	/* results = {} */
+	quitActivity: (params) => {
+		/*
+		 a) quit a 'activity'
+		 */
+		return userActivityMapModel.deleteOneByUserIdAndActivityId(params)
+			.then((results) => {
+				return {};
+			});
+	},
+
 	/* params = {user_id} */
 	/* results = {activities} */
 	getAllParticipatedActivitiesByUserId: (params) => {

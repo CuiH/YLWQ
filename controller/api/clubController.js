@@ -127,12 +127,53 @@ clubRoute.post('/update',
 	}
 );
 
+clubRoute.post('/quit',
+	tokenAuthentication,
+	bodyParser.urlencoded({extended: false}),
+	clubAuthentication.memberAccess,
+	clubAuthentication.notFounder,
+	(req, res, next) => {
+		clubService.quitClub({user_id: req.user.id, club_id: req.body.club_id})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user quit a club.");
+
+				let clubMessageParams = {
+					operator_user_id: req.user.id,
+					club_id: req.body.club_id,
+					title: null,
+					content: null,
+					type: value.CLUB_MESSAGE_TYPE_QUIT,
+					target_id: null,
+					target_name: null
+				};
+
+				return clubMessageService.createClubMessage(clubMessageParams);
+			})
+			.then(() => {
+				console.log("a club message was created.");
+			})
+			.catch(err => next(err));
+	}
+);
+
 clubRoute.get('/get_hottest_three',
 	(req, res, next) => {
 		clubService.getHottestThreeClubs()
 			.then((results) => {
 				res.json({result: 'success', data: results});
 				console.log("a user got three hottest clubs.");
+			})
+			.catch(err => next(err));
+	}
+);
+
+clubRoute.get('/search',
+	(req, res, next) => {
+		clubService.getAllClubsByPartName({part_name: req.query.part_name})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user searched clubs by part_name.");
 			})
 			.catch(err => next(err));
 	}

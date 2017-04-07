@@ -60,4 +60,37 @@ checkingRoute.get('/application_unread',
 	}
 );
 
+checkingRoute.get('/activity_bill_creator',
+	(req, res, next) => {
+		checkingService.checkActivityBillCreator({user_id: req.query.user_id, activity_bill_id: req.query.activity_bill_id})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user checked activity_bill_creator.");
+			})
+			.catch(err => next(err));
+	}
+);
+
+checkingRoute.get('/activity_bill_unfinished',
+	(req, res, next) => {
+		checkingService.checkActivityBillUnfinished({activity_bill_id: req.query.activity_bill_id})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user checked activity_bill_unfinished.");
+			})
+			.catch(err => next(err));
+	}
+);
+
+checkingRoute.get('/challenge',
+	(req, res, next) => {
+		checkingService.checkChallenge({challenger_user_id: req.query.user_id, activity_bill_id: req.query.activity_bill_id})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user checked challenge.");
+			})
+			.catch(err => next(err));
+	}
+);
+
 module.exports = checkingRoute;

@@ -51,6 +51,21 @@ const clubModel = {
 		});
 	},
 
+	/* params = {part_name} */
+	findAllByPartName: (params) => {
+		return new Promise((resolve, reject) => {
+			query(clubSql.selectAllByPartName, ['%' + params.part_name + '%'],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
+	},
+
 	/* params = {id, brief_intro} */
 	updateOneById: (params) => {
 		return new Promise((resolve, reject) => {

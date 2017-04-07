@@ -10,6 +10,7 @@ const notificationController = require('./controller/api/notificationController'
 const activityBillController = require('./controller/api/activityBillController');
 const checkingController = require('./controller/api/checkingController');
 const newsController = require('./controller/api/newsController');
+const challengeController = require('./controller/api/challengeController');
 
 
 let app = express();
@@ -32,6 +33,7 @@ app.use('/api/notification', notificationController);
 app.use('/api/activity_bill', activityBillController);
 app.use('/api/checking', checkingController);
 app.use('/api/news', newsController);
+app.use('/api/challenge', challengeController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

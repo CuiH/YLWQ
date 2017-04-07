@@ -33,6 +33,36 @@ const activityBillItemModel = {
 				}
 			);
 		});
+	},
+
+	/* params = {id, description, cost, note, payer_user_id} */
+	updateOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillItemSql.updateOneById, [params.description, params.cost, params.note, params.payer_user_id, params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
+	},
+
+	/* params = {id} */
+	deleteOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(activityBillItemSql.deleteOneById, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

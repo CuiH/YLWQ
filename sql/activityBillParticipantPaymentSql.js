@@ -3,6 +3,7 @@ const activityBillParticipantPayment = {
 	selectAllByActivityBillId: 'SELECT abpp.*, u.username as participant_username ' +
 	                           'FROM activity_bill_participant_payment abpp, user u ' +
 	                           'WHERE abpp.participant_user_id = u.id AND activity_bill_id = ?',
+	updateOneById: 'UPDATE activity_bill_participant_payment SET amount = ? WHERE id = ?'
 };
 
 module.exports = activityBillParticipantPayment;

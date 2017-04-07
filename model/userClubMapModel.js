@@ -109,6 +109,21 @@ const userClubMapModel = {
 				}
 			);
 		});
+	},
+
+	/* params = {user_id, club_id} */
+	deleteOneByUserIdAndClubId: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userClubMapSql.deleteOneByUserIdAndClubId, [params.user_id, params.club_id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
 	}
 };
 

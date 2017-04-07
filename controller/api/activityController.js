@@ -78,7 +78,7 @@ activityRoute.post('/create',
 activityRoute.post('/attend',
 	tokenAuthentication,
 	bodyParser.urlencoded({extended: false}),
-	activityAuthentication.readAccess,
+	activityAuthentication.attendAccess,
 	activityAuthentication.unfinishedActivity,
 	(req, res, next) => {
 		let params = req.body;
@@ -109,9 +109,25 @@ activityRoute.post('/attend',
 	}
 );
 
+activityRoute.post('/quit',
+	tokenAuthentication,
+	bodyParser.urlencoded({extended: false}),
+	activityAuthentication.participantAccess,
+	activityAuthentication.unfinishedActivity,
+	(req, res, next) => {
+		let params = {activity_id: req.body.activity_id, user_id: req.user.id};
+		activityService.quitActivity(params)
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user quit an activity.");
+			})
+			.catch(err => next(err));
+	}
+);
+
 activityRoute.get('/get_all_participants',
 	tokenAuthentication,
-	activityAuthentication.readAccess,
+	activityBillAuthentication.readAccess,
 	(req, res, next) => {
 		let params = {activity_id: req.query.activity_id};
 		userService.getAllParticipantsByActivityId(params)

@@ -2,6 +2,7 @@ const query = require('../util/mysqlPool');
 
 const notificationSql = require('../sql/notificationSql');
 
+const value = require('../config/value');
 
 const notificationModel = {
 	/* params = {title, content, type, object_id, object_name, subject_id, subject_name} */
@@ -20,10 +21,10 @@ const notificationModel = {
 		});
 	},
 
-	/* params = {user_id} */
+	/* params = {user_id, page} */
 	findAllByUserId: (params) => {
 		return new Promise((resolve, reject) => {
-			query(notificationSql.selectAllByUserId, [params.user_id],
+			query(notificationSql.selectAllByUserId, [params.user_id, (params.page-1)*value.PAGE_SIZE],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);

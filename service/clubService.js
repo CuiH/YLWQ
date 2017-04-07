@@ -40,6 +40,18 @@ const clubService = {
 			});
 	},
 
+	/* params = {part_name} */
+	/* results = {clubs} */
+	getAllClubsByPartName: (params) => {
+		/*
+		 a) get all 'club' by [user_id]
+		 */
+		return clubModel.findAllByPartName(params)
+			.then((results) => {
+				return {clubs: results};
+			});
+	},
+
 	/* params = {id, brief_intro} */
 	/* results = {} */
 	updateClubById: (params) => {
@@ -73,6 +85,18 @@ const clubService = {
 		return clubModel.findHottestThree(params)
 			.then((results) => {
 				return {clubs: results};
+			});
+	},
+
+	/* params = {user_id, club_id} */
+	/* results = {clubs} */
+	quitClub: (params) => {
+		/*
+		 a) quit a 'club'
+		 */
+		return userClubMapModel.deleteOneByUserIdAndClubId(params)
+			.then((results) => {
+				return {};
 			});
 	},
 
