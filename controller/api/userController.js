@@ -8,6 +8,7 @@ const activityService = require('../../service/activityService');
 const notificationService = require('../../service/notificationService');
 const userDetailService = require('../../service/userDetailService');
 const userPaymentService = require('../../service/userPaymentService');
+const userAccountService = require('../../service/userAccountService');
 
 const tokenAuthentication = require('../../middleware/tokenAuthentication');
 
@@ -96,6 +97,18 @@ userRoute.get('/get_all_user_payments',
 			.then((results) => {
 				res.json({result: 'success', data: results});
 				console.log("a user got all user_payment.");
+			})
+			.catch(err => next(err));
+	}
+);
+
+userRoute.get('/get_user_account',
+	tokenAuthentication,
+	(req, res, next) => {
+		userAccountService.getUserAccountById({id: req.user.id})
+			.then((results) => {
+				res.json({result: 'success', data: results});
+				console.log("a user got a user_account.");
 			})
 			.catch(err => next(err));
 	}

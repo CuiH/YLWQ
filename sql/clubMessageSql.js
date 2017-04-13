@@ -1,3 +1,5 @@
+const value = require('../config/value');
+
 const clubMessage = {
 	insert: 'INSERT INTO club_message (operator_user_id, club_id, title, content, type, ' +
 	                                  'create_time, target_id, target_name) ' +
@@ -11,7 +13,8 @@ const clubMessage = {
                                'u.id = t.operator_user_id',
 	selectAllByClubId: 'SELECT cm.*, u.username as operator_username ' +
 	                   'FROM club_message cm, user u ' +
-	                   'WHERE cm.club_id = ? AND u.id = cm.operator_user_id',
+	                   'WHERE cm.club_id = ? AND u.id = cm.operator_user_id ' +
+	                   'ORDER BY cm.create_time DESC LIMIT ?, ' + value.PAGE_SIZE
 };
 
 module.exports = clubMessage;

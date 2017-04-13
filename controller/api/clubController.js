@@ -64,8 +64,7 @@ clubRoute.get('/get_all_club_messages',
 	tokenAuthentication,
 	clubAuthentication.memberAccess,
 	(req, res, next) => {
-		const params = {club_id: req.query.club_id};
-		clubMessageService.getAllClubMessagesByClubId(params)
+		clubMessageService.getAllClubMessagesByClubId({club_id: req.query.club_id, page: req.query.page})
 			.then((results) => {
 				res.json({result: 'success', data: results});
 				console.log("a user got all club messages of a club.");
@@ -170,6 +169,12 @@ clubRoute.get('/get_hottest_three',
 
 clubRoute.get('/search',
 	(req, res, next) => {
+		if (req.query.part_name == "") {
+			res.json({result: 'success', data: {clubs: []}});
+			console.log("a user searched clubs by part_name.");
+
+			return;
+		}
 		clubService.getAllClubsByPartName({part_name: req.query.part_name})
 			.then((results) => {
 				res.json({result: 'success', data: results});

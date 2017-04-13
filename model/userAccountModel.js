@@ -32,7 +32,22 @@ const userAccountModel = {
 				}
 			);
 		});
-	}
+	},
+
+	/* params = {id} */
+	findOneById: (params) => {
+		return new Promise((resolve, reject) => {
+			query(userAccountSql.selectOneById, [params.id],
+				(err, results, fields) => {
+					if (err) {
+						return reject(err);
+					}
+
+					resolve(results);
+				}
+			);
+		});
+	},
 };
 
 module.exports = userAccountModel;

@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const userModel = require('../model/userModel');
 const userAccountModel = require('../model/userAccountModel');
 const userClubMapModel = require('../model/userClubMapModel');
+const userDetailModel = require('../model/userDetailModel');
 
 const tokenValues = require('../config/token');
 

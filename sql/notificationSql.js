@@ -6,7 +6,7 @@ const notification = {
 	selectAllByUserId: 'SELECT n.*, unm.is_read, unm.create_time ' +
 	                   'FROM notification n, user_notification_map unm ' +
 	                   'WHERE unm.notification_id = n.id AND unm.user_id = ? ' +
-		               'ORDER BY unm.create_time LIMIT ?, ' + value.PAGE_SIZE
+		               'ORDER BY unm.create_time DESC LIMIT ?, ' + value.PAGE_SIZE
 };
 
 module.exports = notification;

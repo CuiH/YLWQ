@@ -2,52 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="550f7893-32e6-48f3-940d-fcb4f88feeba" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/controller/api/challengeController.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/middleware/challengeAuthentication.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/challengeModel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/model/userPaymentModel.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/service/challengeService.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/service/userDetailService.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/service/userPaymentService.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sql/challengeSql.js" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/sql/userPaymentSql.js" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/service/activityBillItemService.js" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/service/userAccountService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app.js" afterPath="$PROJECT_DIR$/app.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/value.js" afterPath="$PROJECT_DIR$/config/value.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/api/activityBillController.js" afterPath="$PROJECT_DIR$/controller/api/activityBillController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/api/activityController.js" afterPath="$PROJECT_DIR$/controller/api/activityController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/api/checkingController.js" afterPath="$PROJECT_DIR$/controller/api/checkingController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/api/clubController.js" afterPath="$PROJECT_DIR$/controller/api/clubController.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controller/api/userController.js" afterPath="$PROJECT_DIR$/controller/api/userController.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/activityAuthentication.js" afterPath="$PROJECT_DIR$/middleware/activityAuthentication.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/activityBillAuthentication.js" afterPath="$PROJECT_DIR$/middleware/activityBillAuthentication.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/clubAuthentication.js" afterPath="$PROJECT_DIR$/middleware/clubAuthentication.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/middleware/notificationAuthentication.js" afterPath="$PROJECT_DIR$/middleware/notificationAuthentication.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/activityBillItemModel.js" afterPath="$PROJECT_DIR$/model/activityBillItemModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/activityBillModel.js" afterPath="$PROJECT_DIR$/model/activityBillModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/activityBillParticipantPaymentModel.js" afterPath="$PROJECT_DIR$/model/activityBillParticipantPaymentModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/clubModel.js" afterPath="$PROJECT_DIR$/model/clubModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/notificationModel.js" afterPath="$PROJECT_DIR$/model/notificationModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/activityModel.js" afterPath="$PROJECT_DIR$/model/activityModel.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/clubMessageModel.js" afterPath="$PROJECT_DIR$/model/clubMessageModel.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/userAccountModel.js" afterPath="$PROJECT_DIR$/model/userAccountModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/userActivityMapModel.js" afterPath="$PROJECT_DIR$/model/userActivityMapModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/userClubMapModel.js" afterPath="$PROJECT_DIR$/model/userClubMapModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/model/userDetailModel.js" afterPath="$PROJECT_DIR$/model/userDetailModel.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/activityBillService.js" afterPath="$PROJECT_DIR$/service/activityBillService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/activityService.js" afterPath="$PROJECT_DIR$/service/activityService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/checkingService.js" afterPath="$PROJECT_DIR$/service/checkingService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/clubService.js" afterPath="$PROJECT_DIR$/service/clubService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/notificationService.js" afterPath="$PROJECT_DIR$/service/notificationService.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/clubMessageService.js" afterPath="$PROJECT_DIR$/service/clubMessageService.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/service/userService.js" afterPath="$PROJECT_DIR$/service/userService.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/activityBillItemSql.js" afterPath="$PROJECT_DIR$/sql/activityBillItemSql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/activityBillParticipantPaymentSql.js" afterPath="$PROJECT_DIR$/sql/activityBillParticipantPaymentSql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/activityBillSql.js" afterPath="$PROJECT_DIR$/sql/activityBillSql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/clubSql.js" afterPath="$PROJECT_DIR$/sql/clubSql.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/clubMessageSql.js" afterPath="$PROJECT_DIR$/sql/clubMessageSql.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/notificationSql.js" afterPath="$PROJECT_DIR$/sql/notificationSql.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/userAccountSql.js" afterPath="$PROJECT_DIR$/sql/userAccountSql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/userActivityMapSql.js" afterPath="$PROJECT_DIR$/sql/userActivityMapSql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/userClubMapSql.js" afterPath="$PROJECT_DIR$/sql/userClubMapSql.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sql/userNotificationMapSql.js" afterPath="$PROJECT_DIR$/sql/userNotificationMapSql.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -65,11 +31,31 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="newsService.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/service/newsService.js">
+      <file leaf-file-name="clubController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/controller/api/clubController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="213">
+              <caret line="134" column="25" lean-forward="true" selection-start-line="134" selection-start-column="25" selection-end-line="134" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clubService.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/service/clubService.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="570">
+              <caret line="92" column="4" lean-forward="false" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="4" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="clubModel.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/clubModel.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="502">
+              <caret line="99" column="20" lean-forward="false" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -98,11 +84,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/sql/activitySql.js" />
-        <option value="$PROJECT_DIR$/model/activityModel.js" />
-        <option value="$PROJECT_DIR$/model/newsModel.js" />
-        <option value="$PROJECT_DIR$/service/newsService.js" />
-        <option value="$PROJECT_DIR$/controller/api/newsController.js" />
         <option value="$PROJECT_DIR$/sql/newsSql.js" />
         <option value="$PROJECT_DIR$/sql/activityBillParticipantPaymentSql.js" />
         <option value="$PROJECT_DIR$/model/activityBillParticipantPaymentModel.js" />
@@ -124,31 +105,36 @@
         <option value="$PROJECT_DIR$/model/challengeModel.js" />
         <option value="$PROJECT_DIR$/controller/api/checkingController.js" />
         <option value="$PROJECT_DIR$/model/userDetailModel.js" />
-        <option value="$PROJECT_DIR$/service/userService.js" />
         <option value="$PROJECT_DIR$/service/userDetailService.js" />
-        <option value="$PROJECT_DIR$/service/userPaymentService.js" />
-        <option value="$PROJECT_DIR$/sql/userAccountSql.js" />
         <option value="$PROJECT_DIR$/sql/activityBillItemSql.js" />
         <option value="$PROJECT_DIR$/sql/activityBillSql.js" />
         <option value="$PROJECT_DIR$/model/activityBillModel.js" />
         <option value="$PROJECT_DIR$/controller/api/challengeController.js" />
         <option value="$PROJECT_DIR$/middleware/activityBillAuthentication.js" />
-        <option value="$PROJECT_DIR$/model/userAccountModel.js" />
         <option value="$PROJECT_DIR$/model/userPaymentModel.js" />
-        <option value="$PROJECT_DIR$/service/activityBillService.js" />
         <option value="$PROJECT_DIR$/controller/api/activityBillController.js" />
         <option value="$PROJECT_DIR$/sql/userPaymentSql.js" />
         <option value="$PROJECT_DIR$/sql/clubSql.js" />
-        <option value="$PROJECT_DIR$/controller/api/clubController.js" />
         <option value="$PROJECT_DIR$/service/clubService.js" />
         <option value="$PROJECT_DIR$/model/clubModel.js" />
         <option value="$PROJECT_DIR$/middleware/notificationAuthentication.js" />
         <option value="$PROJECT_DIR$/sql/userNotificationMapSql.js" />
-        <option value="$PROJECT_DIR$/sql/notificationSql.js" />
         <option value="$PROJECT_DIR$/service/notificationService.js" />
-        <option value="$PROJECT_DIR$/controller/api/userController.js" />
         <option value="$PROJECT_DIR$/model/notificationModel.js" />
         <option value="$PROJECT_DIR$/config/value.js" />
+        <option value="$PROJECT_DIR$/sql/userAccountSql.js" />
+        <option value="$PROJECT_DIR$/service/userPaymentService.js" />
+        <option value="$PROJECT_DIR$/controller/api/userController.js" />
+        <option value="$PROJECT_DIR$/model/userAccountModel.js" />
+        <option value="$PROJECT_DIR$/service/userAccountService.js" />
+        <option value="$PROJECT_DIR$/service/userService.js" />
+        <option value="$PROJECT_DIR$/model/clubMessageModel.js" />
+        <option value="$PROJECT_DIR$/service/clubMessageService.js" />
+        <option value="$PROJECT_DIR$/sql/clubMessageSql.js" />
+        <option value="$PROJECT_DIR$/sql/notificationSql.js" />
+        <option value="$PROJECT_DIR$/controller/api/clubController.js" />
+        <option value="$PROJECT_DIR$/service/activityBillService.js" />
+        <option value="$PROJECT_DIR$/model/activityModel.js" />
       </list>
     </option>
   </component>
@@ -215,34 +201,6 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="util" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YLWQ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YLWQ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="sql" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YLWQ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YLWQ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="service" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -293,24 +251,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YLWQ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="YLWQ" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -445,12 +389,17 @@
       <workItem from="1491367019244" duration="15784000" />
       <workItem from="1491456962385" duration="17364000" />
       <workItem from="1491483567069" duration="4074000" />
-      <workItem from="1491545429906" duration="15604000" />
+      <workItem from="1491545429906" duration="18601000" />
+      <workItem from="1491623159025" duration="4948000" />
+      <workItem from="1491812618536" duration="4586000" />
+      <workItem from="1491909442700" duration="3489000" />
+      <workItem from="1491972659842" duration="7907000" />
+      <workItem from="1492067674356" duration="5930000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="431090000" />
+    <option name="totallyTimeSpent" value="460947000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -462,7 +411,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1654373" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -470,19 +419,19 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24052005" sideWeight="0.5036881" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1637744" sideWeight="0.4963119" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24980205" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3286334" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991323" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29175705" sideWeight="0.4963119" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32827735" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3991323" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -557,6 +506,8 @@
         <option value="$PROJECT_DIR$/../YLWQ_FRONT/src/app/user/user-payments.component.js.map" />
         <option value="$PROJECT_DIR$/../YLWQ_FRONT/src/app/club-list.component.js" />
         <option value="$PROJECT_DIR$/../YLWQ_FRONT/src/app/club-list.component.js.map" />
+        <option value="$PROJECT_DIR$/../YLWQ_FRONT/src/app/user/UserAccount.js" />
+        <option value="$PROJECT_DIR$/../YLWQ_FRONT/src/app/user/UserAccount.js.map" />
       </list>
     </option>
   </component>
@@ -570,212 +521,10 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/node_modules/body-parser/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="77" column="31" lean-forward="false" selection-start-line="77" selection-start-column="31" selection-end-line="77" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="35" column="45" lean-forward="false" selection-start-line="35" selection-start-column="45" selection-end-line="35" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/activityAuthentication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="26" column="4" lean-forward="false" selection-start-line="26" selection-start-column="4" selection-end-line="26" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/clubAuthentication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="55" column="4" lean-forward="false" selection-start-line="55" selection-start-column="4" selection-end-line="55" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/api/checkingController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="430">
-          <caret line="86" column="58" lean-forward="false" selection-start-line="86" selection-start-column="58" selection-end-line="86" selection-end-column="58" />
-          <folding>
-            <marker date="1491487287998" expanded="true" signature="2571:2850" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/checkingService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="141" column="39" lean-forward="false" selection-start-line="141" selection-start-column="39" selection-end-line="141" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/challengeModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="73" column="93" lean-forward="false" selection-start-line="73" selection-start-column="93" selection-end-line="73" selection-end-column="93" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/challengeService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-148">
-          <caret line="8" column="35" lean-forward="false" selection-start-line="8" selection-start-column="17" selection-end-line="8" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/challengeSql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="82" lean-forward="false" selection-start-line="11" selection-start-column="82" selection-end-line="11" selection-end-column="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/challengeAuthentication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="12" column="4" lean-forward="false" selection-start-line="12" selection-start-column="4" selection-end-line="12" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/userDetailSql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="6" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/userModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-663">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/userDetailModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="51" lean-forward="false" selection-start-line="2" selection-start-column="38" selection-end-line="2" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/userService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-943">
-          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/userDetailService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="49" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/userAccountSql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="69" lean-forward="false" selection-start-line="2" selection-start-column="69" selection-end-line="2" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/activityBillItemSql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/activityBillItemModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="51" lean-forward="false" selection-start-line="2" selection-start-column="51" selection-end-line="2" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/userActivityJoinSql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="4" lean-forward="false" selection-start-line="1" selection-start-column="4" selection-end-line="1" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/activityModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="31" column="51" lean-forward="true" selection-start-line="31" selection-start-column="51" selection-end-line="31" selection-end-column="51" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/activityBillParticipantPaymentSql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="4" lean-forward="false" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/userPaymentService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="15" column="32" lean-forward="false" selection-start-line="15" selection-start-column="32" selection-end-line="15" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/activityBillParticipantPaymentModel.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
           <caret line="23" column="4" lean-forward="false" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/activityService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="84" column="4" lean-forward="false" selection-start-line="84" selection-start-column="4" selection-end-line="84" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/api/activityController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="113" column="45" lean-forward="true" selection-start-line="113" selection-start-column="4" selection-end-line="113" selection-end-column="45" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -783,7 +532,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="519">
           <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -791,50 +539,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/api/challengeController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="49" column="36" lean-forward="true" selection-start-line="49" selection-start-column="36" selection-end-line="49" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/middleware/activityBillAuthentication.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="604">
-          <caret line="221" column="78" lean-forward="false" selection-start-line="221" selection-start-column="70" selection-end-line="221" selection-end-column="78" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/userAccountModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="24" column="74" lean-forward="false" selection-start-line="24" selection-start-column="60" selection-end-line="24" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/activityBillService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="583">
-          <caret line="171" column="57" lean-forward="false" selection-start-line="171" selection-start-column="57" selection-end-line="171" selection-end-column="57" />
-          <folding>
-            <marker date="1491556491023" expanded="true" signature="495:5883" ph="{...}" />
-            <marker date="1491556491023" expanded="true" signature="4058:5879" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/api/activityBillController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="178" column="23" lean-forward="false" selection-start-line="178" selection-start-column="23" selection-end-line="178" selection-end-column="23" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -842,9 +546,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -852,37 +553,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="6" column="68" lean-forward="false" selection-start-line="6" selection-start-column="68" selection-end-line="6" selection-end-column="68" />
-          <folding>
-            <element signature="e#0#39#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/service/clubService.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="48" column="35" lean-forward="false" selection-start-line="48" selection-start-column="35" selection-end-line="48" selection-end-column="35" />
-          <folding>
-            <marker date="1491558617757" expanded="true" signature="178:2132" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/controller/api/clubController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="172" column="33" lean-forward="false" selection-start-line="172" selection-start-column="33" selection-end-line="172" selection-end-column="33" />
-          <folding>
-            <marker date="1491558688052" expanded="true" signature="4795:5034" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/clubModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="56" column="37" lean-forward="false" selection-start-line="56" selection-start-column="37" selection-end-line="56" selection-end-column="37" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -890,7 +560,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
           <caret line="6" column="137" lean-forward="false" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="137" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -898,23 +567,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="15" column="42" lean-forward="false" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/userActivityMapModel.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sql/userNotificationMapSql.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="118" lean-forward="false" selection-start-line="1" selection-start-column="118" selection-end-line="1" selection-end-column="118" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -922,7 +574,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="629">
           <caret line="37" column="24" lean-forward="true" selection-start-line="37" selection-start-column="24" selection-end-line="37" selection-end-column="24" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -930,7 +581,200 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/value.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="481">
+          <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/newsService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/userActivityMapModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/userPaymentService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="16" column="21" lean-forward="true" selection-start-line="16" selection-start-column="21" selection-end-line="16" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/userDetailService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/userAccountModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="37" column="8" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/userAccountService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="4" column="62" lean-forward="false" selection-start-line="4" selection-start-column="62" selection-end-line="4" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/userDetailModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="17" lean-forward="false" selection-start-line="16" selection-start-column="17" selection-end-line="16" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/userNotificationMapSql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="118" lean-forward="false" selection-start-line="1" selection-start-column="118" selection-end-line="1" selection-end-column="118" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/clubMessageModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-34">
+          <caret line="4" column="41" lean-forward="false" selection-start-line="4" selection-start-column="41" selection-end-line="4" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/notificationModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/notificationService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="587">
+          <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/clubMessageService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/userAccountSql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="59" lean-forward="false" selection-start-line="3" selection-start-column="59" selection-end-line="3" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/clubMessageSql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="52" lean-forward="false" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sql/notificationSql.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="53" lean-forward="false" selection-start-line="8" selection-start-column="53" selection-end-line="8" selection-end-column="53" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/api/checkingController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-357">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/activityBillAuthentication.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3570">
+          <caret line="210" column="6" lean-forward="false" selection-start-line="210" selection-start-column="6" selection-end-line="210" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-195">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/activityBillItemModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="6" lean-forward="true" selection-start-line="20" selection-start-column="6" selection-end-line="20" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/userClubMapModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/activityService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="4" lean-forward="false" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/userModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="519">
+          <caret line="99" column="4" lean-forward="false" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/userService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="87" column="34" lean-forward="true" selection-start-line="87" selection-start-column="34" selection-end-line="87" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/activityBillService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="38" column="65" lean-forward="false" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/api/userController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-229">
+          <caret line="83" column="99" lean-forward="false" selection-start-line="83" selection-start-column="79" selection-end-line="83" selection-end-column="99" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/api/notificationController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -942,58 +786,114 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sql/notificationSql.js">
+    <entry file="file://$PROJECT_DIR$/controller/api/activityController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="77" lean-forward="true" selection-start-line="8" selection-start-column="77" selection-end-line="8" selection-end-column="77" />
+        <state relative-caret-position="-1810">
+          <caret line="56" column="45" lean-forward="false" selection-start-line="56" selection-start-column="45" selection-end-line="56" selection-end-column="45" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/api/notificationController.js">
+    <entry file="file://$PROJECT_DIR$/controller/api/activityBillController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="33" lean-forward="false" selection-start-line="18" selection-start-column="33" selection-end-line="18" selection-end-column="33" />
+        <state relative-caret-position="-2252">
+          <caret line="24" column="30" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/notificationService.js">
+    <entry file="file://$PROJECT_DIR$/controller/api/challengeController.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="80" column="4" lean-forward="false" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="4" />
+        <state relative-caret-position="-127">
+          <caret line="25" column="28" lean-forward="true" selection-start-line="25" selection-start-column="28" selection-end-line="25" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/value.js">
+    <entry file="file://$PROJECT_DIR$/model/activityModel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="481">
-          <caret line="48" column="17" lean-forward="false" selection-start-line="48" selection-start-column="17" selection-end-line="48" selection-end-column="17" />
+        <state relative-caret-position="17">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/controller/api/userController.js">
+    <entry file="file://$PROJECT_DIR$/model/applicationModel.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="79" column="37" lean-forward="false" selection-start-line="79" selection-start-column="37" selection-end-line="79" selection-end-column="37" />
+        <state relative-caret-position="-399">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/notificationModel.js">
+    <entry file="file://$PROJECT_DIR$/middleware/applicationAuthentication.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
+        <state relative-caret-position="17">
+          <caret line="1" column="22" lean-forward="false" selection-start-line="1" selection-start-column="6" selection-end-line="1" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/newsService.js">
+    <entry file="file://$PROJECT_DIR$/middleware/tokenAuthentication.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/applicationService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="57" column="58" lean-forward="false" selection-start-line="57" selection-start-column="29" selection-end-line="57" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/api/applicationController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="60" column="39" lean-forward="false" selection-start-line="60" selection-start-column="39" selection-end-line="60" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/api/newsController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/middleware/clubAuthentication.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="90" column="19" lean-forward="false" selection-start-line="90" selection-start-column="4" selection-end-line="90" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/clubModel.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="502">
+          <caret line="99" column="20" lean-forward="false" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/controller/api/clubController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="134" column="25" lean-forward="true" selection-start-line="134" selection-start-column="25" selection-end-line="134" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/clubService.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="570">
+          <caret line="92" column="4" lean-forward="false" selection-start-line="92" selection-start-column="4" selection-end-line="92" selection-end-column="4" />
           <folding />
         </state>
       </provider>

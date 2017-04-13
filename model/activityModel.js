@@ -10,7 +10,6 @@ const activityModel = {
 	/* params = {sponsor_user_id, club_id, name, start_time, end_time, location, brief_intro, note} */
 	create: (params) => {
 		return new Promise((resolve, reject) => {
-			console.log(params)
 			query(activitySql.insert, [params.sponsor_user_id, params.club_id,
 					params.name, params.start_time, params.end_time, params.location,
 					params.brief_intro, params.note, value.ACTIVITY_BILL_STATUS_UNPUBLISHED],

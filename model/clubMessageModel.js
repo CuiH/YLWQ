@@ -2,6 +2,8 @@ const query = require('../util/mysqlPool');
 
 const clubMessageSql = require('../sql/clubMessageSql');
 
+const value = require('../config/value');
+
 
 const cluMessageModel = {
 	/* params = {operator_user_id, club_id, title, content, type, target_id, target_name} */
@@ -36,10 +38,10 @@ const cluMessageModel = {
 		});
 	},
 
-	/* params = {club_id} */
+	/* params = {club_id, page} */
 	findAllByClubId: (params) => {
 		return new Promise((resolve, reject) => {
-			query(clubMessageSql.selectAllByClubId, [params.club_id],
+			query(clubMessageSql.selectAllByClubId, [params.club_id, (params.page-1)*value.PAGE_SIZE],
 				(err, results, fields) => {
 					if (err) {
 						return reject(err);

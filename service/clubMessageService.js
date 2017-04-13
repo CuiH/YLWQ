@@ -14,7 +14,7 @@ const clubMessageService = {
 			});
 	},
 
-	/* params = {club_id} */
+	/* params = {club_id, page} */
 	/* results = {clubMessages} */
 	getAllClubMessagesByClubId: (params) => {
 		/*
